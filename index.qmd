@@ -1,0 +1,1954 @@
+---
+title: "Commentary on Bollen and Bianconcini (2026)"
+subtitle: "Online Supplementary Materials"
+date: 2026-09-16
+author:
+  - name: Ellen L. Hamaker
+    id: elh
+    email: e.l.hamaker@uu.nl
+    affiliation: 
+      - name: Universiteit Utrecht
+        city: Utrecht
+        country: The Netherlands
+  - name: Jeroen D. Mulder
+    id: jdm
+    email: j.d.mulder@uu.nl
+    affiliation: 
+      - name: Universiteit Utrecht
+        city: Utrecht
+        country: The Netherlands
+citation: 
+  container-title: Psychometrika
+  volume: 1
+  issue: 1
+  doi: 10.5555/12345678
+funding: "J. D. Mulder is funded by the project “Solutions to Temporal Misalignment in Longitudinal Causal Research” with file number 019.251SG.005 which is (partly) financed by the Dutch Research Council (NWO) under the grant https://doi.org/10.61686/RLZSH15326."
+bibliography: references.bib
+format:
+  html:
+    other-links:
+        - text: Publication
+          href: https://doi.org/10.1177/0049124104270220
+    toc: true
+    toc-location: left
+#    number-sections: true
+    # Shinylive needs its assets as separate files, so no self-contained HTML
+    embed-resources: false
+filters:
+  - shinylive
+---
+
+This website is a supplement to @hamaker_commentary_2026. It contains mathematical derivations to compare the parameters of the autoregressive latent trajectory (ALT) model and the latent change score model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate differences between the two models.
+
+Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time [@hamaker_conditions_2005], because then this model is equivalent to restricted versions of the latent curve model with structured residuals (LCM-SR). For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the observations of an individual over time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the LCM-SR, allows one to see how ALT parameters are related to model features that have direct interpretations in terms of the underlying trajectories of individuals over time.   
+
+The supplementary materials contain:
+
+1. A brief presentation of the restricted multivariate ALT model, which forms the point of departure; 
+2. Derivations showing how the parameters from the multivariate restricted ALT model can be expressed as functions of the parameters of the multivariate restricted LCM-SR and vice versa;
+3. An explanation of what happens to the parameters of the two models when the interval between measurements increases;
+4. Derivations of the covariance structure of the intercepts and slopes of a multivariate restricted ALT model in terms of the parameters of a multivariate restricted LCM-SR model. 
+
+Sections 2 to 4 additional contain an interactive app that allows the reader to explore the results of the derivations for various scenarios.
+
+# 1. Restricted multivariate ALT model
+
+The multivariate ALT model with time-invariant lagged parameters can be expressed as
+$$
+\mathbf{Y}_{it} = \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{i,t-1} + \mathbf{E}_{it}.
+$$ {#eq-alt}
+$\mathbf{Y}_{it}$ is a $p \times 1$ vector with observations of individual $i$ at occasion $t$, $\mathbf{A}_i$ is a $p \times 1$ vector with constants, $\mathbf{B}_i$ is a $p \times 1$ vector with change parameters, $\mathbf{R}$ is a $p\times p$ matrix with time-invariant autoregressive and cross-lagged regression coefficients, and $\mathbf{E}_{it}$ is a $p \times 1$ vector with random error components.
+
+# 2. Relating growth parameters of ALT model and LCM-SR
+Here, we show how the intercepts and slopes from the restricted multivariate ALT model can be expressed as in terms of the intercepts and slopes from the restricted multivariate LCM-SR, and vice versa.
+
+## Derivations in @hamaker_conditions_2005
+@hamaker_conditions_2005 provided expressions that connect the parameters from the restricted LCM-SR in terms of the parameters from the restricted ALT model. However, the online supporting materials showing the derivations for this result are no longer available through the link that was included in that article; therefore, we present the results here again. 
+
+Starting from the restricted ALT model, we can write
+$$
+\begin{align}
+\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
+&= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\Bigl\{\mathbf{A}_{i} + \mathbf{B}_i (t-1) + \mathbf{R}\mathbf{Y}_{t-2} + \mathbf{E}_{it-1} \Bigr\} + \mathbf{E}_{it}\notag\\
+&= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i+ \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \mathbf{Y}_{it-2} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
+&= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \Bigl\{\mathbf{A}_i + \mathbf{B}_i (t-2) + \mathbf{R}\mathbf{Y}_{it-3} + \mathbf{E}_{it-2} \Bigr\} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
+&= \mathbf{A}_i + \mathbf{R}\mathbf{A}_{i} + \mathbf{R}^2 \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \mathbf{B}_i (t-2) + \mathbf{R}^3 \mathbf{Y}_{t-3} + \mathbf{R}^2 \mathbf{E}_{t-2} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
+&\dots \notag\\
+&= \sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i + \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i (t-j) + \sum_{j=0}^\infty \mathbf{R}^j \mathbf{E}_{it-j} \\
+&= \sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i - \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j + \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i t + \sum_{j=0}^\infty \mathbf{R}^j \mathbf{E}_{it-j}. 
+\end{align}
+$$ {#eq-foursums}
+
+The first two terms in @eq-foursums do not contain time $t$. They can be rewritten using results from the geometric series, that is,
+$$
+\begin{align}
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i &=(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i \\
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j & = \sum_{j=0}^{\infty} j \otimes \mathbf{R}^{j-1} \mathbf{R}\mathbf{B}_i  = (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i,
+\end{align}
+$$
+where $\otimes$ represents the Kronecker product. The third term contains time $t$, and can also be rewritten with results from the geometric series, to get 
+$$
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i t = (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i t.
+$$
+The last term in @eq-foursums may can be recognized as a first order vector autoregressive (VAR(1)) process expressed as a vector moving average process of infinite order VMA($\infty$), that is,
+$$
+\begin{align}
+\mathbf{Z}_{it} &= \mathbf{R}\mathbf{Z}_{it-1} + \mathbf{E}_{it} \\
+&=\sum_{j=0}^\infty \mathbf{R}^j \mathbf{E}_{t-j}.\notag
+\end{align}
+$$
+
+Using these results in @eq-alt, we can write
+$$
+\begin{align}
+\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
+&= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i + (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i t + \mathbf{Z}_{it}\notag\\
+&= \mathbf{\Delta}_i + \mathbf{\Gamma}_i t + \mathbf{Z}_{it}
+\end{align}
+$$
+where $\mathbf{\Delta}_i = \Bigl\{(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i \Bigr\}$ forms the $p$-variate vector with intercepts, $\mathbf{\Gamma}_i= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i$ forms the $p$-variate vector with linear slopes, and $\mathbf{Z}_{it}$ represents the $p$-variate vector with residuals that are regressed on each other and themselves through $\mathbf{R}$. The latter expression can therefore be interpreted as a latent growth curve model with VAR(1) residuals (i.e., a restricted LCM-SR).
+
+## Reverse expressions
+Using these results, we can also obtain the reverse expressions. The slopes from the restricted ALT model can be expressed as
+$$
+\mathbf{B}_i = (\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i.
+$$
+Using this expression for $\mathbf{B}_i$ in the expression for $\mathbf{\Delta}_i$, we get
+$$
+\begin{align*}
+\mathbf{\Delta}_i    &= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i \\
+            &= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i.
+\end{align*}
+$$
+Adding the second term on the right-hand side to both sides, we get
+$$
+\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i  = (\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i, 
+$$
+and multiplying both sides by $(\mathbf{I}-\mathbf{R})$, we get
+$$
+(\mathbf{I}-\mathbf{R})\Big\{\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i \Bigr\}=  \mathbf{A}_i.
+$$
+Hence, we can write
+$$
+\mathbf{A}_i = (\mathbf{I}-\mathbf{R})\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-1} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i .
+$$
+Since $\mathbf{R}(\mathbf{I}-\mathbf{R})= \mathbf{R}- \mathbf{R}^2$, but it is also true that $(\mathbf{I}-\mathbf{R})\mathbf{R}= \mathbf{R}- \mathbf{R}^2$, we can replace $\mathbf{R}(\mathbf{I}-\mathbf{R})$ by $(\mathbf{I}-\mathbf{R})\mathbf{R}$, which gives us
+$$
+\begin{align}
+    \mathbf{A}_i     &= (\mathbf{I}-\mathbf{R})\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-1} (\mathbf{I}-\mathbf{R})\mathbf{R}\mathbf{\Gamma}_i \\
+            &= (\mathbf{I}-\mathbf{R})\mathbf{\Delta}_i + \mathbf{R}\mathbf{\Gamma}_i,
+\end{align}
+$$
+which shows that the intercepts of the multivariate restricted ALT model are functions of both the vector with intercepts and the vector with slopes of the multivariate restricted LCM-SR, and the lagged parameters in $\mathbf{R}$. 
+
+## Converting between ALT and LCM-SR growth parameters (*App*)
+The below app converts the growth parameters of the restricted bivariate ALT model into those of the restricted bivariate LCM-SR (and vice versa) based on the equations above. The default settings below mirror those in the main paper, and show how a positive trend in $X$ and $Y$ variables shows up as a negative coefficient in the slope matrix $\mathbf{B}$ of the ALT model. You can explore the relationship between the restricted bivariate ALT model and restricted bivariate LCM-SR growth parameters further by filling in other values in the $\mathbf{\Delta}_i$, $\mathbf{\Gamma}_i$, and $\mathbf{R}$ matrices when the LCM-SR is the population model, or in the $\mathbf{A}_i$, $\mathbf{B}_i$, and $\mathbf{R}$ matrices when the ALT model is the population model. 
+
+::: {.column-page-right}
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 750
+# PREAMBLE ----
+library(shiny)
+library(mvtnorm)
+library(ggplot2)
+
+# HELPER FUNCTIONS ----
+
+vector_bracket_display <- function(label_html, vec) {
+
+  div(
+    class = "equation-row",
+    span(class = "equation-label", HTML(label_html)),
+    span(class = "equation-equals", "="),
+    div(
+      class = "matrix-container",
+      div(class = "matrix-bracket left-bracket"),
+      div(
+        class = "vector-input",
+        div(class = "matrix-value", round(vec[1], 3)),
+        div(class = "matrix-value", round(vec[2], 3))
+      ),
+      div(class = "matrix-bracket right-bracket")
+    )
+  )
+}
+
+# WEB PAGE (UI) ----
+
+ui <- fluidPage(
+
+  sidebarLayout(
+    sidebarPanel(
+
+      # POPULATION MODEL ----
+      p("Choose which model you want to use as the population model:\n"),
+      radioButtons(
+        "model_choice",
+        label = NULL,
+        choices = c(
+          "LCM-SR" = "lcmToAlt",
+          "ALT"    = "altToLcm"
+        ),
+        selected = "lcmToAlt"
+      ),
+
+      # GROWTH FACTORS ----
+      p("Set the values of the growth factors:"),
+      conditionalPanel(
+        condition = "input.model_choice == 'lcmToAlt'",
+        div(
+          class = "equation-pair",
+          div(
+            class = "equation-row",
+            span(class = "equation-label", HTML("&Delta;<sub>i</sub>")),
+            span(class = "equation-equals", "="),
+            div(
+              class = "matrix-container",
+              div(class = "matrix-bracket left-bracket"),
+              div(
+                class = "vector-input",
+                numericInput("D1", label = NULL, value = 5, step = 0.1),
+                numericInput("D2", label = NULL, value = 15, step = 0.1)
+              ),
+              div(class = "matrix-bracket right-bracket")
+            )
+          ),
+
+          div(
+            class = "equation-row",
+            span(class = "equation-label", HTML("&Gamma;<sub>i</sub>")),
+            span(class = "equation-equals", "="),
+            div(
+              class = "matrix-container",
+              div(class = "matrix-bracket left-bracket"),
+              div(
+                class = "vector-input",
+                numericInput("G1", label = NULL, value = 1, step = 0.1),
+                numericInput("G2", label = NULL, value = 3, step = 0.1)
+              ),
+              div(class = "matrix-bracket right-bracket")
+            )
+          )
+        )
+      ),
+      conditionalPanel(
+        condition = "input.model_choice == 'altToLcm'",
+        div(
+          class = "equation-pair",
+          div(
+            class = "equation-row",
+            span(class = "equation-label", HTML("A<sub>i</sub>")),
+            span(class = "equation-equals", "="),
+            div(
+              class = "matrix-container",
+              div(class = "matrix-bracket left-bracket"),
+              div(
+                class = "vector-input",
+                numericInput("A1", label = NULL, value = 5, step = 0.1),
+                numericInput("A2", label = NULL, value = 15, step = 0.1)
+              ),
+              div(class = "matrix-bracket right-bracket")
+            )
+          ),
+          div(
+            class = "equation-row",
+            span(class = "equation-label", HTML("B<sub>i</sub>")),
+            span(class = "equation-equals", "="),
+            div(
+              class = "matrix-container",
+              div(class = "matrix-bracket left-bracket"),
+              div(
+                class = "vector-input",
+                numericInput("B1", label = NULL, value = 1, step = 0.1),
+                numericInput("B2", label = NULL, value = 3, step = 0.1)
+              ),
+              div(class = "matrix-bracket right-bracket")
+            )
+          )
+        )
+      ),
+      br(),
+
+      # LAGGED PARAMETERS ----
+      p("Set the values of lagged parameters:"),
+      div(
+        class = "equation-row",
+        span(class = "equation-label", "R"),
+        span(class = "equation-equals", "="),
+        div(
+          class = "matrix-container",
+          div(class = "matrix-bracket left-bracket"),
+          div(
+            class = "matrix-input",
+            numericInput("R11", label = NULL, value = 0.5, step = 0.1),
+            numericInput("R12", label = NULL, value = 0.4, step = 0.1),
+            numericInput("R21", label = NULL, value = 0, step = 0.1),
+            numericInput("R22", label = NULL, value = 0.5, step = 0.1)
+          ),
+          div(class = "matrix-bracket right-bracket")
+        )
+      ),
+      uiOutput("stationarity_check"),
+      tags$hr(),
+
+      # ADVANCED SETTINGS ----
+      tags$details(
+        tags$summary(
+          span(class = "chevron", HTML("&#9656;")),
+          h4("Advanced Settings")
+        ),
+        br(),
+        numericInput(
+          "nt",
+          "Number of occasions",
+          value = 10,
+          min = 2,
+          max = 50,
+          step = 1
+        ),
+        h5("Residual covariance matrix E:"),
+        div(
+          class = "equation-row",
+          span(class = "equation-label", HTML("&Sigma;<sub>E</sub>")),
+          span(class = "equation-equals", "="),
+          div(
+            class = "matrix-container",
+            div(class = "matrix-bracket left-bracket"),
+            div(
+              class = "matrix-input",
+              numericInput("E11", label = NULL, value = 5, min = 0.001, step = 0.1),
+              uiOutput("E12_mirror"),
+              numericInput("E21", label = NULL, value = 2, step = 0.1),
+              numericInput("E22", label = NULL, value = 5, min = 0.001, step = 0.1)
+            ),
+            div(class = "matrix-bracket right-bracket")
+          )
+        ),
+        br(),
+        numericInput(
+          "seed",
+          "Random seed",
+          value = 123,
+          min = 1,
+          step = 1
+        ),
+        br(),
+        actionButton(
+          "sample_btn",
+          "Sample"
+        )
+      )
+    ),
+
+    # MAIN PANEL ----
+    mainPanel(
+
+      # PARAMETER COMPARISON ----
+      uiOutput("comparison_text"),
+      uiOutput("comparison_matrices"),
+      tags$hr(),
+
+      # VISUALIZATION ----
+      withMathJax(
+        p(
+          "The trends in \\(X\\) and \\(Y\\) as implied by the population model and the set parameter values are visualized below."
+        )
+      ),
+      plotOutput(
+        "timeseries",
+        height = "500px"
+      )
+    )
+  ),
+
+  # CSS ----
+  tags$head(
+    tags$style(
+      HTML("
+
+      /* =================================================
+         EQUATION ROW (label = matrix)
+         ================================================= */
+
+      .equation-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .equation-row .matrix-container {
+        margin: 0;
+        justify-content: flex-start;
+      }
+
+      .equation-label {
+        font-size: 18px;
+        font-weight: 600;
+        min-width: 1.4em;
+        text-align: right;
+      }
+
+      .equation-equals {
+        font-size: 18px;
+      }
+
+
+      /* =================================================
+         EQUATION PAIR (two matrices grouped side by side)
+         ================================================= */
+
+      /* =================================================
+         MESSAGES (stationarity check)
+         ================================================= */
+
+      .check-ok   { color: #2e7d32; }
+      .check-warn { color: #d32f2f; font-weight: 600; }
+
+      .equation-pair {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 24px;
+        margin-bottom: 4px;
+      }
+
+      .equation-pair .equation-row {
+        margin-bottom: 6px;
+      }
+
+
+      /* =================================================
+         VECTOR AND MATRIX LAYOUT
+         ================================================= */
+
+      .matrix-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        margin-top: 8px;
+        margin-bottom: 12px;
+      }
+
+
+      /* =================================================
+         VECTOR INPUT
+         ================================================= */
+
+      .vector-input {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+
+      /* =================================================
+         MATRIX INPUT
+         ================================================= */
+
+      .matrix-input {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px 6px;
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+
+      /* =================================================
+         REMOVE SHINY LABEL SPACE
+         ================================================= */
+
+      .vector-input .form-group,
+      .matrix-input .form-group {
+        margin-bottom: 0;
+      }
+
+
+      /* =================================================
+         INPUT BOXES
+         ================================================= */
+
+      .vector-input input,
+      .matrix-input input {
+        width: 65px;
+        height: 32px;
+        padding: 4px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .matrix-input-mirrored {
+        background-color: #f5f5f5 !important;
+        color: #666;
+        cursor: not-allowed;
+      }
+
+
+      /* =================================================
+         BRACKETS
+         ================================================= */
+
+      .matrix-bracket {
+        position: relative;
+        width: 10px;
+        align-self: stretch;
+      }
+
+
+      /* =================================================
+         LEFT BRACKET
+         ================================================= */
+
+      .left-bracket {
+        border-left: 1px solid #444;
+      }
+
+      .left-bracket::before,
+      .left-bracket::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .left-bracket::before { top: 0; }
+      .left-bracket::after  { bottom: 0; }
+
+
+      /* =================================================
+         RIGHT BRACKET
+         ================================================= */
+
+      .right-bracket {
+        border-right: 1px solid #444;
+      }
+
+      .right-bracket::before,
+      .right-bracket::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .right-bracket::before { top: 0; }
+      .right-bracket::after  { bottom: 0; }
+
+
+      /* =================================================
+         OUTPUT VECTORS / MATRICES
+         ================================================= */
+
+      .output-vector {
+        display: flex;
+        justify-content: center;
+      }
+
+      pre {
+        border: none;
+        background-color: transparent;
+        font-size: 15px;
+      }
+
+
+      /* =================================================
+         PRINTED MATRIX VALUES (read-only bracket display)
+         ================================================= */
+
+      .matrix-value {
+        width: 65px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+
+
+      /* =================================================
+         COLLAPSIBLE DETAILS / SUMMARY (Advanced Settings)
+         ================================================= */
+
+      details > summary {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+        margin-bottom: 8px;
+      }
+
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details > summary h4 {
+        margin: 0;
+      }
+
+      details > summary .chevron {
+        display: inline-block;
+        font-size: 14px;
+        transition: transform 0.15s ease-in-out;
+      }
+
+      details[open] > summary .chevron {
+        transform: rotate(90deg);
+      }
+
+      details[open] > summary {
+        margin-bottom: 12px;
+      }
+
+    ")
+    )
+  )
+)
+
+# SERVER ----
+server <- function(input, output, session) {
+
+  # R MATRIX ----
+  R <- reactive({
+    matrix(
+      c(input$R11, input$R12, input$R21, input$R22),
+      nrow = 2,
+      ncol = 2,
+      byrow = TRUE
+    )
+  })
+
+  # COVARIANCE MATRIX OF E ----
+  # Symmetric: only lower triangle is editable (E11, E21, E22)
+  SigmaE <- reactive({
+    matrix(
+      c(input$E11, input$E21,
+        input$E21, input$E22),
+      nrow = 2,
+      ncol = 2,
+      byrow = TRUE
+    )
+  })
+
+  output$E12_mirror <- renderUI({
+    tags$input(
+      type = "number",
+      class = "form-control matrix-input-mirrored",
+      value = if (is.null(input$E21)) 2 else input$E21,
+      disabled = NA
+    )
+  })
+
+  # INPUT VECTORS ----
+  D_in <- reactive(matrix(c(input$D1, input$D2), nrow = 2, ncol = 1))
+  G_in <- reactive(matrix(c(input$G1, input$G2), nrow = 2, ncol = 1))
+  A_in <- reactive(matrix(c(input$A1, input$A2), nrow = 2, ncol = 1))
+  B_in <- reactive(matrix(c(input$B1, input$B2), nrow = 2, ncol = 1))
+
+  # DELTA (D) ----
+  D <- reactive({
+    if (input$model_choice == "altToLcm") {
+      IR_inv <- solve(diag(2) - R())
+      IR_inv %*% A_in() - IR_inv %*% IR_inv %*% R() %*% B_in()
+    } else {
+      D_in()
+    }
+  })
+
+  # GAMMA (G) ----
+  G <- reactive({
+    if (input$model_choice == "altToLcm") {
+      solve(diag(2) - R()) %*% B_in()
+    } else {
+      G_in()
+    }
+  })
+
+  # A ----
+  A <- reactive({
+    if (input$model_choice == "lcmToAlt") {
+      (diag(2) - R()) %*% D_in() + R() %*% G_in()
+    } else {
+      A_in()
+    }
+  })
+
+  # B ----
+  B <- reactive({
+    if (input$model_choice == "lcmToAlt") {
+      (diag(2) - R()) %*% G_in()
+    } else {
+      B_in()
+    }
+  })
+
+  # DISPLAY D / DELTA ----
+  output$D_display <- renderPrint({
+    round(D(), 3)
+  })
+
+  # DISPLAY G / GAMMA ----
+  output$G_display <- renderPrint({
+    round(G(), 3)
+  })
+
+  # DISPLAY A ----
+  output$A_display <- renderPrint({
+    round(A(), 3)
+  })
+
+  # DISPLAY B ----
+  output$B_display <- renderPrint({
+    round(B(), 3)
+  })
+
+  # PARAMETER COMPARISON: TEXT ----
+
+  # Select label for user-suplied and computed model
+  output$comparison_text <- renderUI({
+    selected_label   <- if (input$model_choice == "lcmToAlt") "LCM-SR" else "ALT"
+    unselected_label <- if (input$model_choice == "lcmToAlt") "ALT"    else "LCM-SR"
+
+    p(
+      paste0(
+        "The ", selected_label,
+        " population values imply the following values of the growth parameters in the ",
+        unselected_label, " model: "
+      )
+    )
+  })
+
+  # PARAMETER COMPARISON: MATRICES ----
+  output$comparison_matrices <- renderUI({
+    if (input$model_choice == "lcmToAlt") {
+      div(
+        class = "equation-pair",
+        vector_bracket_display("A<sub>i</sub>", A()),
+        vector_bracket_display("B<sub>i</sub>", B())
+      )
+    } else {
+      div(
+        class = "equation-pair",
+        vector_bracket_display("&Delta;<sub>i</sub>", D()),
+        vector_bracket_display("&Gamma;<sub>i</sub>", G())
+      )
+    }
+  })
+
+  # STATIONARITY ----
+  output$stationarity_check <- renderUI({
+    req(!anyNA(R()))
+    eig <- eigen(R(), only.values = TRUE)$values
+    txt <- paste0("Eigenvalues of R: ", paste(format(round(eig, 3)), collapse = ", "))
+    if (max(Mod(eig)) < 1) {
+      p(class = "check-ok", txt, " (stationary).")
+    } else {
+      p(class = "check-warn", txt,
+        " (NOT stationary: the ALT model and LCM-SR are then not equivalent).")
+    }
+  })
+
+  # SAMPLE BUTTON ----
+
+  # Count presses on "Sample" button (works through random seed)
+  sample_count <- reactiveVal(0)
+
+  observeEvent(input$sample_btn, {
+    sample_count(sample_count() + 1)
+  })
+
+  # SIMULATION ----
+  simulated_data <- reactive({
+    set.seed(input$seed + sample_count())
+
+    # Number of occasions
+    nt <- input$nt
+
+    # Sample residual errors
+    E <- rmvnorm(nt, c(0, 0), SigmaE())
+
+    # Initialize innovation and observed vectors
+    Z <- matrix(0, nrow = nt, ncol = 2)
+    Y <- matrix(0, nrow = nt, ncol = 2)
+
+    # Initial occasion
+    Z[1, ] <- E[1, ]
+    Y[1, ] <- D() + Z[1, ]
+
+    # Loop through occasions
+    for (t in 2:nt) {
+      Z[t, ] <- R() %*% Z[t - 1, ] + E[t, ]
+      Y[t, ] <- D() + G() * (t - 1) + Z[t, ]
+    }
+
+    colnames(Y) <- c("X", "Y")
+
+    Y
+  })
+
+  # PLOT ----
+  output$timeseries <- renderPlot({
+
+    # Simulate data
+    Y <- simulated_data()
+
+    # Number of occasions
+    nt <- input$nt
+
+    # x-axis values
+    occasions <- 0:(nt - 1)
+
+    # Model trend values
+    trend_X <- D()[1] + G()[1] * occasions
+    trend_Y <- D()[2] + G()[2] * occasions
+
+    plot_data <- data.frame(
+      occasion = rep(occasions, 2),
+      value    = c(Y[, "X"], Y[, "Y"]),
+      variable = factor(
+        rep(c("X", "Y"), each = nt),
+        levels = c("X", "Y")
+      )
+    )
+
+    # Create plot data for model trend
+    trend_data <- data.frame(
+      occasion = rep(occasions, 2),
+      value    = c(trend_X, trend_Y),
+      variable = factor(
+        rep(c("X", "Y"), each = nt),
+        levels = c("X", "Y")
+      )
+    )
+
+    # Colors for X and Y (shared by data points and trend lines)
+    series_colors <- c(
+      "X" = "blue",
+      "Y" = "red"
+    )
+
+    # Line types for the trend lines only (not shown in the legend)
+    series_linetypes <- c(
+      "X" = "solid",
+      "Y" = "dashed"
+    )
+
+    ggplot() +
+      geom_point(
+        data  = plot_data,
+        aes(x = occasion, y = value, color = variable),
+        alpha = 0.4,
+        size  = 2
+      ) +
+      geom_line(
+        data  = trend_data,
+        aes(x = occasion, y = value, color = variable, linetype = variable),
+        linewidth = 1
+      ) +
+      geom_vline(xintercept = 0, color = "black", linewidth = 0.5, linetype = "dashed") +
+      scale_color_manual(values = series_colors, name = NULL) +
+      scale_linetype_manual(values = series_linetypes, guide = "none") +
+      labs(x = "Occasion", y = "Value") +
+      theme_minimal(base_size = 18) +
+      theme(
+        legend.position = c(0.02, 0.98),
+        legend.justification = c(0, 1),
+        legend.background = element_rect(fill = "white", colour = NA)
+      )
+
+  })
+}
+
+# RUN APP ----
+shinyApp(
+  ui = ui,
+  server = server
+)
+```
+:::
+
+# 3. Interval between measurements
+
+Since the time interval between measurements is often a somewhat arbitrary choice, it is of interest to understand what happens to the parameters of a model when the interval changes. 
+
+## $\mathbf{R}$ across different intervals
+
+Increasing or decreasing the measurement frequency (e.g., measuring every three, six, or twelve months), does not change the underlying linear trend represented by $\mathbf{\Delta}_i$ and $\mathbf{\Gamma}_i$ in the LCM-SR, except for the adjustment by a constant for the slopes. That is, if the measurements are taken with intervals that are double the length of the initial interval, the slopes will also double in size. As this change is the same for all elements in $\mathbf{\Gamma}_i$, and the change is the same for all individuals $i$, the correlations between the slopes, and between the slopes and the intercepts are not affected by this. However, for the parameters of the ALT model, using a different interval between the measurements can have quite dramatic effects on the intercepts and slopes. To understand this, it is important to first understand what happens to the lagged parameters when the interval changes. 
+
+From the time series literature [@hamilton_time_1994] it is known that if we double the interval, the matrix with lagged parameters becomes $\mathbf{R}^2$. Continuing with the example above, suppose that $\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}$ represents the lagged effects for a 3-month interval (quarterly). The lagged effects for a 6-month interval (biannual) are then given by $\mathbf{R}_{\text{Qu}}^{2} = \mathbf{R}_{\text{Bi}} = \begin{bmatrix}0.25 & 0.4 \\ 0 & 0.25\end{bmatrix}$. Note that $\mathbf{R}$ is a matrix, and that squaring a matrix is more complex that simply squaring its individuals elements. Therefore, the lack of change in the cross-lagged effect when comparing $\mathbf{R}_{\text{Qu}}$ and $\mathbf{R}_{\text{Bi}}$ is not a mistake, but rather a (coincidental) result of matrix exponentiation. If we double the interval again to a 12-month interval (annual), this results in $\mathbf{R}_{\text{Qu}}^{4} = \mathbf{R}_{\text{An}} = \begin{bmatrix}0.062 & 0.2 \\ 0 & 0.062\end{bmatrix}$; now, the cross-lagged did change. 
+
+## Growth parameters across different intervals (*App*)
+
+Based on the derivations above, we see that these changes in the lagged effects across time intervals does not influence the growth parameters of the LCM-SR models, whereas it does impact the growth parameters of the ALT model. In the app below, we demonstrate this by computing the growth parameters for the ALT model (and the LCM-SR) for three scenarios: When measurements are taken at 3-month intervals, when measurements are taken at 6-month intervals, and when measurement are taken at 12-month intervals. Our starting point is the LCM-SR with the parameters $\mathbf{\Delta}_{\text{Qu}} = \begin{bmatrix}5 \\ 15\end{bmatrix}$ and $\mathbf{\Gamma}_{\text{Qu}} = \begin{bmatrix}1 \\ 3\end{bmatrix}$ for 3-month intervals, and using $\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}$. The app demonstrates that for this constellation of parameter values, the intercept $\mathbf{A}_{\text{Qu}}$ in the ALT model changes not just in value, but also in sign when the interval is doubled to 6-month intervals ($\mathbf{A}_{\text{Qu}} \rightarrow \mathbf{A}_{\text{Bi}}$); the intercept in the LCM-SR, however, remains the same. Moreover, the sign of the slope parameters also changes in the ALT model when measurements are taken at 12-month intervals ($\mathbf{B}_{\text{Qu}} \rightarrow \mathbf{B}_{\text{An}}$), even though the underlying linear trend remains the same. 
+
+You can use the app below to further explore how the growth parameters change as a function of the time intervals between subsequent measurement occasions by filling in different population values in the $\mathbf{\Delta}_{\text{Qu}}$, $\mathbf{\Gamma}_{\text{Qu}}$, and $\mathbf{R}_{\text{Qu}}$ matrices. To simplify notation, we omit the subscript $i$ for the growth parameters in the app.
+
+::: {.column-page-right}
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 620
+# PREAMBLE ----
+library(shiny)
+
+# HELPER FUNCTIONS ----
+
+vector_bracket_display <- function(label_html, vec, highlight_negative = FALSE) {
+
+  # Round the values to 3 decimal places
+  val1 <- round(vec[1], 3)
+  val2 <- round(vec[2], 3)
+
+  # Highlight negative values in red
+  style1 <- if (highlight_negative && val1 < 0) "color: #d32f2f; font-weight: 600;" else NULL
+  style2 <- if (highlight_negative && val2 < 0) "color: #d32f2f; font-weight: 600;" else NULL
+
+  div(
+    class = "equation-row",
+    span(class = "equation-label", HTML(label_html)),
+    span(class = "equation-equals", "="),
+    div(
+      class = "matrix-container",
+      div(class = "matrix-bracket left-bracket"),
+      div(
+        class = "vector-input",
+        div(class = "matrix-value", style = style1, val1),
+        div(class = "matrix-value", style = style2, val2)
+      ),
+      div(class = "matrix-bracket right-bracket")
+    )
+  )
+}
+
+# Function to display a matrix in a bracketed format
+matrix_bracket_display <- function(label_html, mat, highlight_negative = FALSE) {
+
+  vals <- round(mat, 3)
+
+  cell_style <- function(v) {
+    if (highlight_negative && v < 0) "color: #d32f2f; font-weight: 600;" else NULL
+  }
+
+  div(
+    class = "equation-row",
+    span(class = "equation-label", HTML(label_html)),
+    span(class = "equation-equals", "="),
+    div(
+      class = "matrix-container",
+      div(class = "matrix-bracket left-bracket"),
+      div(
+        class = "matrix-value-grid",
+        div(class = "matrix-value", style = cell_style(vals[1, 1]), vals[1, 1]),
+        div(class = "matrix-value", style = cell_style(vals[1, 2]), vals[1, 2]),
+        div(class = "matrix-value", style = cell_style(vals[2, 1]), vals[2, 1]),
+        div(class = "matrix-value", style = cell_style(vals[2, 2]), vals[2, 2])
+      ),
+      div(class = "matrix-bracket right-bracket")
+    )
+  )
+}
+
+# Function to compute ALT growth factors from LCM-SR
+compute_AB <- function(R, D, G) {
+  I <- diag(2)
+  list(
+    A = (I - R) %*% D + R %*% G,
+    B = (I - R) %*% G
+  )
+}
+
+# WEB PAGE (UI) ----
+
+ui <- fluidPage(
+
+  sidebarLayout(
+
+    # SIDEBAR ----
+    sidebarPanel(
+      width = 4,
+      p(
+        "Set the values of ", HTML("<b>&Delta;</b><sub>Qu</sub>"), ", ", HTML("<b>&Gamma;</b><sub>Qu</sub>"), ", and", HTML("<b>R</b><sub>Qu</sub>"),
+        " for Scenario 1 (quarterly measurement occasions). The corresponding values ",
+        "for Scenario 2 (biannual) and Scenario 3 (annual) are derived from ",
+        "these and shown alongside them."
+      ),
+
+      div(
+        class = "equation-row",
+        span(class = "equation-label", HTML("&Delta;<sub>Qu</sub>")),
+        span(class = "equation-equals", "="),
+        div(
+          class = "matrix-container",
+          div(class = "matrix-bracket left-bracket"),
+          div(
+            class = "vector-input",
+            numericInput("D1", label = NULL, value = 5, step = 0.1),
+            numericInput("D2", label = NULL, value = 15, step = 0.1)
+          ),
+          div(class = "matrix-bracket right-bracket")
+        )
+      ),
+
+      div(
+        class = "equation-row",
+        span(class = "equation-label", HTML("&Gamma;<sub>Qu</sub>")),
+        span(class = "equation-equals", "="),
+        div(
+          class = "matrix-container",
+          div(class = "matrix-bracket left-bracket"),
+          div(
+            class = "vector-input",
+            numericInput("G1", label = NULL, value = 1, step = 0.1),
+            numericInput("G2", label = NULL, value = 3, step = 0.1)
+          ),
+          div(class = "matrix-bracket right-bracket")
+        )
+      ),
+
+      div(
+        class = "equation-row",
+        span(class = "equation-label", HTML("R<sub>Qu</sub>")),
+        span(class = "equation-equals", "="),
+        div(
+          class = "matrix-container",
+          div(class = "matrix-bracket left-bracket"),
+          div(
+            class = "matrix-input",
+            numericInput("R11", label = NULL, value = 0.5, step = 0.1),
+            numericInput("R12", label = NULL, value = 0.4, step = 0.1),
+            numericInput("R21", label = NULL, value = 0, step = 0.1),
+            numericInput("R22", label = NULL, value = 0.5, step = 0.1)
+          ),
+          div(class = "matrix-bracket right-bracket")
+        )
+      )
+    ),
+
+    # MAIN PANEL ----
+    mainPanel(
+      width = 8,
+
+      fluidRow(
+        column(
+          width = 4,
+          class = "scenario-col",
+          h4("Scenario 1 (quarterly)"),
+          uiOutput("scenario1_matrices")
+        ),
+        column(
+          width = 4,
+          class = "scenario-col",
+          h4("Scenario 2 (biannual)"),
+          uiOutput("scenario2_matrices")
+        ),
+        column(
+          width = 4,
+          class = "scenario-col",
+          h4("Scenario 3 (annual)"),
+          uiOutput("scenario3_matrices")
+        )
+      )
+    )
+  ),
+
+  # CSS ----
+  tags$head(
+    tags$style(
+      HTML("
+
+      /* Keep sidebar and main panel side-by-side (no stacking) */
+      .container-fluid > .row {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+      }
+
+      .container-fluid > .row > [class*='col-'] {
+        float: none;
+        max-width: none;
+      }
+
+      /* =================================================
+         SCENARIO COLUMNS (prevent matrix content from
+         bleeding into the neighboring column)
+         ================================================= */
+
+      .scenario-col {
+        overflow-x: hidden;
+      }
+
+      /* =================================================
+         EQUATION ROW (label = matrix)
+         ================================================= */
+
+      .equation-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .equation-row .matrix-container {
+        margin: 0;
+        justify-content: flex-start;
+      }
+
+      .equation-label {
+        font-size: 18px;
+        font-weight: 600;
+        min-width: 1.4em;
+        text-align: right;
+      }
+
+      .equation-equals {
+        font-size: 18px;
+      }
+
+      /* Slightly more compact rows inside the three scenario columns */
+      .scenario-col .equation-row {
+        gap: 5px;
+      }
+
+      .scenario-col .equation-label,
+      .scenario-col .equation-equals {
+        font-size: 16px;
+      }
+
+
+      /* =================================================
+         VECTOR AND MATRIX LAYOUT
+         ================================================= */
+
+      .matrix-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        margin-top: 8px;
+        margin-bottom: 12px;
+      }
+
+
+      /* =================================================
+         VECTOR INPUT
+         ================================================= */
+
+      .vector-input {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+
+      /* =================================================
+         MATRIX INPUT
+         ================================================= */
+
+      .matrix-input {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px 6px;
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+
+      /* =================================================
+         READ-ONLY MATRIX VALUE GRID
+         ================================================= */
+
+      .matrix-value-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px 6px;
+        margin-left: 6px;
+        margin-right: 6px;
+      }
+
+
+      /* =================================================
+         REMOVE SHINY LABEL SPACE
+         ================================================= */
+
+      .vector-input .form-group,
+      .matrix-input .form-group {
+        margin-bottom: 0;
+      }
+
+
+      /* =================================================
+         INPUT BOXES
+         ================================================= */
+
+      .vector-input input,
+      .matrix-input input {
+        width: 60px;
+        height: 32px;
+        padding: 4px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+
+      /* =================================================
+         BRACKETS
+         ================================================= */
+
+      .matrix-bracket {
+        position: relative;
+        width: 10px;
+        align-self: stretch;
+      }
+
+
+      /* =================================================
+         LEFT BRACKET
+         ================================================= */
+
+      .left-bracket {
+        border-left: 1px solid #444;
+      }
+
+      .left-bracket::before,
+      .left-bracket::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .left-bracket::before { top: 0; }
+      .left-bracket::after  { bottom: 0; }
+
+
+      /* =================================================
+         RIGHT BRACKET
+         ================================================= */
+
+      .right-bracket {
+        border-right: 1px solid #444;
+      }
+
+      .right-bracket::before,
+      .right-bracket::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .right-bracket::before { top: 0; }
+      .right-bracket::after  { bottom: 0; }
+
+
+      /* =================================================
+         PRINTED MATRIX VALUES (read-only bracket display)
+         ================================================= */
+
+      .matrix-value {
+        width: 55px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+
+
+      /* =================================================
+         THIN SECTION DIVIDER
+         ================================================= */
+
+      .thin-hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 18px 0;
+      }
+    ")
+    )
+  )
+)
+
+# SERVER ----
+server <- function(input, output, session) {
+
+  # SCENARIO 1: QUARTERLY (user-editable base scenario, set in sidebar) ----
+  R1 <- reactive({
+    matrix(
+      c(input$R11, input$R12, input$R21, input$R22),
+      nrow = 2, ncol = 2, byrow = TRUE
+    )
+  })
+
+  D1 <- reactive(matrix(c(input$D1, input$D2), nrow = 2, ncol = 1))
+  G1 <- reactive(matrix(c(input$G1, input$G2), nrow = 2, ncol = 1))
+
+  AB1 <- reactive(compute_AB(R1(), D1(), G1()))
+
+  # SCENARIO 2: BIANNUAL ----
+  R2 <- reactive(R1() %*% R1())
+  D2 <- reactive(D1())
+  G2 <- reactive(G1() * 2)
+
+  AB2 <- reactive(compute_AB(R2(), D2(), G2()))
+
+  # SCENARIO 3: ANNUAL ----
+  R3 <- reactive(R2() %*% R2())
+  D3 <- reactive(D1())
+  G3 <- reactive(G2() * 2)
+
+  AB3 <- reactive(compute_AB(R3(), D3(), G3()))
+
+  # SCENARIO 1: FULL DISPLAY (read-only, copied from sidebar inputs) ----
+  output$scenario1_matrices <- renderUI({
+    ab <- AB1()
+    div(
+      matrix_bracket_display("R<sub>Qu</sub>", R1()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("&Delta;<sub>Qu</sub>", D1()),
+      vector_bracket_display("&Gamma;<sub>Qu</sub>", G1()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("A<sub>Qu</sub>", ab$A, highlight_negative = TRUE),
+      vector_bracket_display("B<sub>Qu</sub>", ab$B, highlight_negative = TRUE)
+    )
+  })
+
+  # SCENARIO 2: FULL DISPLAY ----
+  output$scenario2_matrices <- renderUI({
+    ab <- AB2()
+    div(
+      matrix_bracket_display("R<sub>Bi</sub>", R2()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("&Delta;<sub>Bi</sub>", D2()),
+      vector_bracket_display("&Gamma;<sub>Bi</sub>", G2()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("A<sub>Bi</sub>", ab$A, highlight_negative = TRUE),
+      vector_bracket_display("B<sub>Bi</sub>", ab$B, highlight_negative = TRUE)
+    )
+  })
+
+  # SCENARIO 3: FULL DISPLAY ----
+  output$scenario3_matrices <- renderUI({
+    ab <- AB3()
+    div(
+      matrix_bracket_display("R<sub>An</sub>", R3()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("&Delta;<sub>An</sub>", D3()),
+      vector_bracket_display("&Gamma;<sub>An</sub>", G3()),
+      tags$hr(class = "thin-hr"),
+      vector_bracket_display("A<sub>An</sub>", ab$A, highlight_negative = TRUE),
+      vector_bracket_display("B<sub>An</sub>", ab$B, highlight_negative = TRUE)
+    )
+  })
+}
+
+# RUN APP ----
+shinyApp(
+  ui = ui,
+  server = server
+)
+```
+:::
+
+
+# 4. Covariances between growth parameters
+
+We can also consider the connection between the covariance structures of the trend parameters in the restricted multivariate LCM-SR and the restricted multivariate ALT model. This is relevant, because much of the interpretation is concerned with individual differences in trend parameters, and how such differences relate to each other. For example, we may be interested in whether individuals who increase more in $X$ also tend to increase more in $Y$, or whether individuals who have a higher intercept also tend to have a steeper slope. In the following, we present the covariance structure of the restricted multivariate LCM-SR. Subsequently, we derive the expression for the variances and covariances of intercepts and slopes of the restricted multivariate ALT model as functions of the variances and covariances of the corresponding LCM-SR. This is followed by a numerical example for a bivariate scenario and an app with which you can try out other bivariate scenarios. 
+
+## Covariance structure of $\mathbf{\Delta}$ and $\mathbf{\Gamma}$ (LCM-SR)
+Since the parameters $\mathbf{\Delta}_i$ and $\mathbf{\Gamma}_i$ from the LCM-SR model can be interpreted in the same way as intercepts and slopes from a multivariate growth curve model without autoregressive effects, it is also clear how to interpret the covariance structure of these parameters: $\mathbf{\Sigma}_{\mathbf{\Delta} \mathbf{\Delta}}$ is the $p \times p$ covariance matrix of the intercepts in $\mathbf{\Delta}$, $\mathbf{\Sigma} _{\mathbf{\Gamma}\mathbf{\Gamma}}$ is the $p\times p$ covariance matrix of the in slopes $\mathbf{\Gamma}$, and $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ is the covariance matrix between the intercepts and slopes (with $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Delta}}=\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}'$). Below, the covariance matrices $\mathbf{\Sigma}_{\mathbf{AA}}$, $\mathbf{\Sigma}_{\mathbf{BB}}$ and $\mathbf{\Sigma}_{\mathbf{AB}}$ of the ALT model are derived in terms of the covariance matrices of the LCM-SR model; this derivation is necessarily based on the assumption that $\mathbf{R}$ is invariant over time. 
+
+## Deriving the covariance structure of $\mathbf{A}$ and $\mathbf{B}$ (ALT model)
+Without loss of generality, we assume that the means of $\mathbf{\Delta}$ and $\mathbf{\Gamma}$ are all zero, so we can write
+
+$$
+\begin{align}
+    \mathbf{\Sigma}_{\mathbf{\mathbf{A}\mathbf{A}}} 
+    &= E\Bigl[\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Delta} + \mathbf{R}\mathbf{\Gamma}\bigr\}\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Delta} + \mathbf{R}\mathbf{\Gamma}\bigr\}'\Bigr]\\
+    &= E\Bigl[(\mathbf{I}-\mathbf{R})\mathbf{\Delta}\mathbf{\Delta}'(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Gamma}\mathbf{\Gamma}'\mathbf{R}' + (\mathbf{I}-\mathbf{R})\mathbf{\Delta}\mathbf{\Gamma}'\mathbf{R}' + \mathbf{R}\mathbf{\Gamma}\mathbf{\Delta}'(\mathbf{I}-\mathbf{R})'\Bigr]\\
+    &= (\mathbf{I}-\mathbf{R})\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Delta}}(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}\mathbf{R}' + (\mathbf{I}-\mathbf{R})\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}\mathbf{R}' + \mathbf{R}\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Delta}}(\mathbf{I}-\mathbf{R})'.
+\end{align}
+$$
+
+This shows that the covariances (and thus the correlations) between the intercepts from the ALT formulation are complicated functions of the covariances between the intercepts from the corresponding LCM-SR, the covariances of the slopes of the LCM-SR, and the covariances between the intercepts and slopes from the LCM-SR. It will be quite possible to find a scenario where the correlation between two intercepts in the LCM-SR is close to 1, whereas the corresponding intercepts in the ALT formulation are not correlated, or even negatively correlated. 
+
+For the covariance matrix of the slopes from the restricted ALT model, we can write
+$$
+\begin{align}
+    \mathbf{\Sigma}_{\mathbf{B}\mathbf{B}} &= E\Bigl[\bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\} \bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\} \prime \Bigl]\\
+    &=(\mathbf{I} - \mathbf{R}) \mathbf{\Sigma}_{\mathbf{\Gamma} \mathbf{\Gamma}} (\mathbf{I} - \mathbf{R}) \prime,
+\end{align}
+$$
+which shows that the expression is much less involved. However, it can be shown that a positive off-diagonal element in $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}$, implying a positive correlation between the slopes of two variables in the system, does not have to imply a corresponding positive element in $\mathbf{\Sigma}_{\mathbf{B}\mathbf{B}}$. 
+
+For the covariance matrix between the intercepts and slopes in the restricted ALT model, we can write
+$$
+\begin{align}
+    \mathbf{\Sigma}_{\mathbf{A}\mathbf{B}} &= E\Bigl[\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Delta} + \mathbf{R}\mathbf{\Gamma}\bigr\}\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}\bigr\}'\Bigr]\\
+    &=E\Bigl[(\mathbf{I}-\mathbf{R})\mathbf{\Delta}\mathbf{\Gamma}'(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Gamma}\mathbf{\Gamma}'(\mathbf{I}-\mathbf{R})'\Bigr]\\
+    &= (\mathbf{I}-\mathbf{R})\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})'
+\end{align}
+$$
+which implies that even when all elements of $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ are positive, meaning that all the intercepts and slopes are positively correlated, this pattern may not be obvious when considering the covariances in $\mathbf{\Sigma}_{\mathbf{A}\mathbf{B}}$.
+
+## Numerical example
+
+Suppose we have a restricted bivariate LCM-SR with the lagged parameters as before, that is,
+$$ 
+\mathbf{R} = \begin{bmatrix}
+    0.5 & 0.4\\
+    0 & 0.5
+\end{bmatrix}.
+$$
+Furthermore, suppose the random intercepts have variances of 1 and a covariance of 0.5, so that 
+$$
+\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Delta}} = \begin{bmatrix}
+   1 \\
+   0.5 & 1
+\end{bmatrix},    
+$$
+and suppose the random slopes also have a variance of 1 and a covariance of 0.3, so that
+$$
+\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}} = \begin{bmatrix}
+   1 \\
+   0.3 & 1
+\end{bmatrix}.   
+$$
+Furthermore, suppose the matrix with covariances between the intercepts and slopes is
+$$
+\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}} = \begin{bmatrix}
+   0.25 & 0.20 \\
+   0.10 & 0.05
+\end{bmatrix},
+$$
+that is, the covariance between the first intercept and first slope is 0.25; the covariance between the first intercepts and the second slope is 0.20; the covariance between the second intercept and the first slope is 0.10; and the covariance between the second intercept and second slope is 0.05.
+
+Hence, the covariance matrix of the two intercepts in $\mathbf{\Delta}$ and the two slopes in $\mathrm{\Gamma}$ can be expressed as
+$$
+\begin{align*}
+\mathbf{\Sigma}_{LCM-SR} &= \begin{bmatrix}
+   \mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Delta}} \\
+   \mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Delta}} & \mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}
+\end{bmatrix}\\
+ &= \begin{bmatrix}
+   1 \\
+   0.50 & 1 \\
+   0.25 & 0.10 & 1\\
+   0.20 & 0.05 & 0.3 & 1   
+\end{bmatrix}.  
+\end{align*}
+$$
+Importantly, all trend parameters are positively related in this LCM-SR.
+
+When using these in the formulas above, we can derive what the variances and covariances of the trend components of the equivalent ALT model are. The covariance matrix for the intercepts in $\mathbf{A}$ is
+$$
+\mathbf{\Sigma}_{\mathbf{\mathbf{A}\mathbf{A}}} = \begin{bmatrix}
+  0.889\\
+  0.275 & 0.535
+\end{bmatrix},
+$$
+which shows that the intercepts are also positively related in the restricted ALT model. However, the covariance matrix for the slopes in the ALT formulation is
+$$
+\mathbf{\Sigma}_{\mathbf{B}\mathbf{B}} = \begin{bmatrix}
+  \;\;\;0.290\\
+  -0.125 & 0.250
+\end{bmatrix},
+$$
+showing that the slopes in this model are actually negatively related. The covariance matrix relating the intercepts and slopes is
+$$
+\mathbf{\Sigma}_{\mathbf{A}\mathbf{B}} = \begin{bmatrix}
+  \;\;\; 0.1005 & 0.3150\\
+  -0.1100 & 0.2625
+\end{bmatrix} \;\;\;\text{and hence}\;\;\;\;     \mathbf{\Sigma}_{\mathbf{B}\mathbf{A}} = \begin{bmatrix}
+  0.1005 & -0.1100\\
+  0.3150 & \;\;\; 0.2625
+\end{bmatrix} ,
+$$
+showing that the covariance between the second intercept and the first slope is negative. Putting these covariances matrices together, we get
+$$
+\begin{align*}
+    \mathbf{\Sigma}_{ALT} &= \begin{bmatrix}
+   \mathbf{\Sigma}_{\mathbf{\mathbf{A}\mathbf{\mathbf{A}}}} \\
+   \mathbf{\Sigma}_{\mathbf{B}\mathbf{A}} & \mathbf{\Sigma}_{\mathbf{B}\mathbf{B}}
+\end{bmatrix}\\
+ &= \begin{bmatrix}
+      0.8890\\
+     0.2750 & \;\;\;0.5250\\
+     0.1005 & -0.1100 & \;\;\;0.2900\\
+     0.3150 & \;\;\; 0.2625 & -0.1250 &0.2500
+\end{bmatrix}.  
+\end{align*}
+$$
+
+This numerical example shows that the signs of covariances between the trend elements in an ALT model do not necessarily reflect the signs of corresponding covariances in the LCM-SR. While the latter have direct interpretations in terms of how individual differences in the actual trajectories that we can visualize over time (i.e., the linear lines that summarize the observations of an individual), the covariances in $\mathbf{\Sigma}_{ALT}$ have to be interpreted in terms of linear trends after subtracting the autoregressive and cross-lagged regressive effects from the data. 
+
+Without a thorough understanding of the meaning of parameters in the ALT model, the negative covariance of -0.125 between the slopes in the ALT formulation (which translates to a correlation of about -0.464) will easily be misinterpreted in meaning that individuals who increase more in one variable, tend to increase less in the other variable over time. In reality, the underlying linear trajectories are actually positively related with a correlation of 0.3, as indicated by the LCM-SR formulation.
+
+There are also scenarios in which the sign of the covariance between the intercept and slope of a construct (e.g., of $X$) in the LCM-SR differs from the sign of the corresponding covariance in the ALT formulation. For instance, the intercept and slope of $Y$ may be positively correlated, implying that a higher intercept tends to be accompanied by a steeper increase over time; in contrast, the intercept of $Y$ in the ALT model may then be negatively correlated with the slope in $Y$, which many users will interpret to mean that people who have a higher intercept tend to increase less over time. Obviously, this interpretation overlooks that the covariance in the ALT model concerns the linear trends underlying $Y^\#_{it}$ rather than $Y_{it}$. 
+
+## Comparing covariance structures of growth parameters (*App*)
+The below app allows you to further explore the relationships between $\mathbf{\Sigma}_{\text{LCM-SR}}$ and $\mathbf{\Sigma}_{\text{ALT}}$. As a default, it illustrates the numerical example from above. You can set the values of $\mathbf{\Sigma}_{\text{LCM-SR}}$ and $\mathbf{R}$ to explore different scenarios as well. For example, you can set all the covariances between the growth factors in the LCM-SR to be 0 (i.e., all elements of $\mathbf{\Sigma}_{\mathbf{\Gamma \Delta}}$ are 0). Yet, the covariances between the intercepts and slopes in the ALT model ($\mathbf{\Sigma}_{\mathbf{BA}}$) will still be non-zero, with some covariances being positive and some being negative.
+
+::: {.column-page-right}
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 450
+# PREAMBLE ----
+library(shiny)
+
+# SETTINGS ----
+
+# Order of the growth parameters in all 4 x 4 matrices
+lcm_labels <- c("&Delta;<sub>X</sub>", "&Delta;<sub>Y</sub>",
+                "&Gamma;<sub>X</sub>", "&Gamma;<sub>Y</sub>")
+alt_labels <- c("A<sub>X</sub>", "A<sub>Y</sub>",
+                "B<sub>X</sub>", "B<sub>Y</sub>")
+
+# Default LCM-SR covariance matrix (numerical example in the supplement)
+Sigma_default <- matrix(
+  c(1.00, 0.50, 0.25, 0.20,
+    0.50, 1.00, 0.10, 0.05,
+    0.25, 0.10, 1.00, 0.30,
+    0.20, 0.05, 0.30, 1.00),
+  nrow = 4, byrow = TRUE
+)
+
+# HELPER FUNCTIONS ----
+
+# Wrap a set of 16 cells (row-wise) in brackets, with row and column labels
+labeled_matrix <- function(label_html, cells, row_labels, col_labels) {
+  div(
+    class = "equation-row",
+    span(class = "equation-label", HTML(label_html)),
+    span(class = "equation-equals", "="),
+    div(
+      class = "labeled-matrix",
+      div(),
+      div(class = "col-labels",
+          lapply(col_labels, function(l) div(class = "axis-label", HTML(l)))),
+      div(class = "row-labels",
+          lapply(row_labels, function(l) div(class = "axis-label", HTML(l)))),
+      div(
+        class = "matrix-container",
+        div(class = "matrix-bracket left-bracket"),
+        div(class = "matrix-grid-4", cells),
+        div(class = "matrix-bracket right-bracket")
+      )
+    )
+  )
+}
+
+# Read-only display of a 4 x 4 matrix
+matrix4_display <- function(label_html, mat, labels, highlight_negative = FALSE) {
+  vals <- round(mat, 3)
+  cells <- lapply(seq_len(16), function(k) {
+    v <- t(vals)[k] # row-wise
+    style <- if (highlight_negative && v < 0) "color: #d32f2f; font-weight: 600;" else NULL
+    div(class = "matrix-value", style = style, v)
+  })
+  labeled_matrix(label_html, cells, labels, labels)
+}
+
+# Input grid for a symmetric 4 x 4 matrix: the lower triangle (incl. the
+# diagonal) is editable; the upper triangle mirrors it
+matrix4_input <- function(label_html, default, labels) {
+  cells <- list()
+  for (i in 1:4) {
+    for (j in 1:4) {
+      cells[[length(cells) + 1]] <- if (i >= j) {
+        numericInput(
+          paste0("S", i, j), label = NULL, value = default[i, j], step = 0.1,
+          min = if (i == j) 0.001 else NA
+        )
+      } else {
+        uiOutput(paste0("S", i, j, "_mirror"))
+      }
+    }
+  }
+  labeled_matrix(label_html, cells, labels, labels)
+}
+
+# 2 x 2 input for R
+R_input <- function() {
+  div(
+    class = "equation-row",
+    span(class = "equation-label", "R"),
+    span(class = "equation-equals", "="),
+    div(
+      class = "matrix-container",
+      div(class = "matrix-bracket left-bracket"),
+      div(
+        class = "matrix-input",
+        numericInput("R11", label = NULL, value = 0.5, step = 0.1),
+        numericInput("R12", label = NULL, value = 0.4, step = 0.1),
+        numericInput("R21", label = NULL, value = 0,   step = 0.1),
+        numericInput("R22", label = NULL, value = 0.5, step = 0.1)
+      ),
+      div(class = "matrix-bracket right-bracket")
+    )
+  )
+}
+
+# Transformation matrix T such that (A', B')' = T (Delta', Gamma')', with
+# A = (I - R) Delta + R Gamma and B = (I - R) Gamma
+compute_T <- function(R) {
+  I <- diag(2)
+  rbind(
+    cbind(I - R, R),
+    cbind(matrix(0, 2, 2), I - R)
+  )
+}
+
+# WEB PAGE (UI) ----
+
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      width = 6,
+
+      p(
+        "Set the covariance matrix of the intercepts and slopes of X and Y. ",
+        "Edit the diagonal and the lower triangle."
+      ),
+
+      matrix4_input(HTML("&Sigma;<sub>LCM-SR</sub>"), Sigma_default, lcm_labels),
+
+      uiOutput("pd_check"),
+
+      br(),
+
+      p("Set the values of the lagged parameters:"),
+
+      R_input(),
+
+      uiOutput("stationarity_check")
+    ),
+
+    # MAIN PANEL ----
+    mainPanel(
+      width = 6,
+
+      p(
+        "The LCM-SR population values imply the following covariance matrix ",
+        "of the intercepts and slopes in the ALT model."
+      ),
+
+      uiOutput("alt_cov")
+    )
+  ),
+
+  # CSS ----
+  tags$head(
+    tags$style(
+      HTML("
+
+      :root {
+        --cell-w: 54px;
+        --cell-h: 32px;
+        --bracket-w: 8px;
+      }
+
+      /* =================================================
+         EQUATION ROW (label = matrix)
+         ================================================= */
+
+      .equation-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+      }
+
+      .equation-row .matrix-container {
+        margin: 0;
+        justify-content: flex-start;
+      }
+
+      .equation-label {
+        font-size: 18px;
+        font-weight: 600;
+        min-width: 1.4em;
+        text-align: right;
+      }
+
+      .equation-equals {
+        font-size: 18px;
+      }
+
+      .equation-pair {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      /* =================================================
+         LABELED 4 x 4 MATRIX
+         ================================================= */
+
+      .labeled-matrix {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 4px;
+        row-gap: 2px;
+      }
+
+      .col-labels {
+        display: grid;
+        grid-template-columns: repeat(4, var(--cell-w));
+        column-gap: 4px;
+        margin-left: calc(var(--bracket-w) + 4px);
+      }
+
+      .row-labels {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3px;
+      }
+
+      .axis-label {
+        height: var(--cell-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #555;
+      }
+
+      .col-labels .axis-label {
+        height: auto;
+      }
+
+      .matrix-grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, var(--cell-w));
+        gap: 3px 4px;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      .matrix-grid-4 .shiny-input-container,
+      .matrix-input .shiny-input-container {
+        width: auto;
+      }
+
+      /* =================================================
+         VECTOR AND MATRIX LAYOUT
+         ================================================= */
+
+      .matrix-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+      }
+
+      .matrix-input {
+        display: grid;
+        grid-template-columns: var(--cell-w) var(--cell-w);
+        gap: 3px 4px;
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      .matrix-grid-4 .form-group,
+      .matrix-input .form-group {
+        margin-bottom: 0;
+      }
+
+      /* =================================================
+         INPUT BOXES
+         ================================================= */
+
+      .matrix-grid-4 input,
+      .matrix-input input {
+        box-sizing: border-box;
+        width: var(--cell-w);
+        height: var(--cell-h);
+        padding: 2px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .matrix-input-mirrored {
+        background-color: #f5f5f5 !important;
+        color: #666;
+        cursor: not-allowed;
+      }
+
+      /* =================================================
+         BRACKETS
+         ================================================= */
+
+      .matrix-bracket {
+        position: relative;
+        width: var(--bracket-w);
+        align-self: stretch;
+      }
+
+      .left-bracket {
+        border-left: 1px solid #444;
+      }
+
+      .left-bracket::before,
+      .left-bracket::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .left-bracket::before { top: 0; }
+      .left-bracket::after  { bottom: 0; }
+
+      .right-bracket {
+        border-right: 1px solid #444;
+      }
+
+      .right-bracket::before,
+      .right-bracket::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 6px;
+        height: 0;
+        border-top: 1px solid #444;
+      }
+
+      .right-bracket::before { top: 0; }
+      .right-bracket::after  { bottom: 0; }
+
+      /* =================================================
+         PRINTED MATRIX VALUES (read-only bracket display)
+         ================================================= */
+
+      .matrix-value {
+        box-sizing: border-box;
+        width: var(--cell-w);
+        height: var(--cell-h);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      /* =================================================
+         MESSAGES AND DIVIDERS
+         ================================================= */
+
+      .check-ok   { color: #2e7d32; }
+      .check-warn { color: #d32f2f; font-weight: 600; }
+
+      .thin-hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 18px 0;
+      }
+    ")
+    )
+  )
+)
+
+# SERVER ----
+server <- function(input, output, session) {
+
+  # LAGGED PARAMETERS ----
+  R_mat <- reactive({
+    matrix(
+      c(input$R11, input$R12, input$R21, input$R22),
+      nrow = 2, ncol = 2, byrow = TRUE
+    )
+  })
+
+  # LCM-SR COVARIANCE MATRIX (symmetric, built from the lower triangle) ----
+  Sigma_LCM <- reactive({
+    S <- matrix(NA_real_, 4, 4)
+    for (i in 1:4) {
+      for (j in 1:i) {
+        v <- input[[paste0("S", i, j)]]
+        S[i, j] <- S[j, i] <- if (is.null(v) || is.na(v)) NA_real_ else v
+      }
+    }
+    validate(need(!anyNA(S), "Please fill in all elements of \u03a3."))
+    S
+  })
+
+  # Mirrored (read-only) upper-triangle cells
+  for (i in 1:3) {
+    for (j in (i + 1):4) {
+      local({
+        ii <- i
+        jj <- j
+        output[[paste0("S", ii, jj, "_mirror")]] <- renderUI({
+          tags$input(
+            type = "number",
+            class = "form-control matrix-input-mirrored",
+            value = input[[paste0("S", jj, ii)]],
+            disabled = NA
+          )
+        })
+      })
+    }
+  }
+
+  # Is the LCM-SR covariance matrix positive definite?
+  is_pd <- reactive({
+    min(eigen(Sigma_LCM(), symmetric = TRUE, only.values = TRUE)$values) > 0
+  })
+
+  output$pd_check <- renderUI({
+    if (is_pd()) {
+      p(class = "check-ok", "\u03a3 is positive definite.")
+    } else {
+      p(class = "check-warn",
+        "\u03a3 is not positive definite, so it is not a valid covariance matrix.")
+    }
+  })
+
+  output$stationarity_check <- renderUI({
+    req(!anyNA(R_mat()))
+    eig <- eigen(R_mat(), only.values = TRUE)$values
+    txt <- paste0("Eigenvalues of R: ", paste(format(round(eig, 3)), collapse = ", "))
+    if (max(Mod(eig)) < 1) {
+      p(class = "check-ok", txt, " (stationary).")
+    } else {
+      p(class = "check-warn", txt,
+        " (NOT stationary: the ALT model and LCM-SR are then not equivalent).")
+    }
+  })
+
+  # IMPLIED ALT COVARIANCE MATRIX ----
+  # Sigma_ALT = T Sigma_LCM T', which contains Sigma_AA, Sigma_AB (upper right),
+  # Sigma_BA (lower left) and Sigma_BB as its blocks
+  Sigma_ALT <- reactive({
+    req(!anyNA(R_mat()))
+    Tm <- compute_T(R_mat())
+    Tm %*% Sigma_LCM() %*% t(Tm)
+  })
+
+  output$alt_cov <- renderUI({
+    matrix4_display("&Sigma;<sub>ALT</sub>", Sigma_ALT(), alt_labels,
+                    highlight_negative = TRUE)
+  })
+}
+
+# RUN APP ----
+shinyApp(
+  ui = ui,
+  server = server
+)
+```
+:::
