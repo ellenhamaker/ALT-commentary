@@ -38,37 +38,37 @@ filters:
   - shinylive
 ---
 
-This website is a supplement to @hamaker_commentary_2026. It contains mathematical derivations to compare the parameters of the autoregressive latent trajectory (ALT) model and the latent change score model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate differences between the two models.
+This website is a supplement to @hamaker_commentary_2026. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.
 
-Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time [@hamaker_conditions_2005], because then this model is equivalent to restricted versions of the latent curve model with structured residuals (LCM-SR). For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the observations of an individual over time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the LCM-SR, allows one to see how ALT parameters are related to model features that have direct interpretations in terms of the underlying trajectories of individuals over time.   
+Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time, because this version is equivalent to a similarly restricted version of the LCM-SR [@hamaker_conditions_2005]. For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the data when observations of an individual are plotted against time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the restricted LCM-SR, allows one to see how ALT parameters are related to model features that have a direct and intuitive interpretation in terms of the underlying trajectories of individuals over time.   
 
 The supplementary materials contain:
 
 1. A brief presentation of the restricted multivariate ALT model, which forms the point of departure; 
 2. Derivations showing how the parameters from the multivariate restricted ALT model can be expressed as functions of the parameters of the multivariate restricted LCM-SR and vice versa;
-3. An explanation of what happens to the parameters of the two models when the interval between measurements increases;
-4. Derivations of the covariance structure of the intercepts and slopes of a multivariate restricted ALT model in terms of the parameters of a multivariate restricted LCM-SR model. 
+3. An explanation of what happens to the trend parameters of these two models when the interval between measurement occasions increases;
+4. Derivations of the covariance structure of the intercepts and slopes of a multivariate restricted ALT model in terms of the variances and covariances of a multivariate restricted LCM-SR model. 
 
-Sections 2 to 4 additional contain an interactive app that allows the reader to explore the results of the derivations for various scenarios.
+Sections 2, 3, and 4 each contain an interactive app that allows the reader to explore the results of the derivations for various bivariate scenarios.
 
 # 1. Restricted multivariate ALT model
 
 The multivariate ALT model with time-invariant lagged parameters can be expressed as
 $$
-\mathbf{Y}_{it} = \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{i,t-1} + \mathbf{E}_{it}.
+\mathbf{Y}_{it} = \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{i,t-1} + \mathbf{E}_{it},
 $$ {#eq-alt}
-$\mathbf{Y}_{it}$ is a $p \times 1$ vector with observations of individual $i$ at occasion $t$, $\mathbf{A}_i$ is a $p \times 1$ vector with constants, $\mathbf{B}_i$ is a $p \times 1$ vector with change parameters, $\mathbf{R}$ is a $p\times p$ matrix with time-invariant autoregressive and cross-lagged regression coefficients, and $\mathbf{E}_{it}$ is a $p \times 1$ vector with random error components.
+where $\mathbf{Y}_{it}$ is a $p \times 1$ vector with observations of individual $i$ at occasion $t$, $\mathbf{A}_i$ is a $p \times 1$ vector with constants, $\mathbf{B}_i$ is a $p \times 1$ vector with change parameters, $\mathbf{R}$ is a $p\times p$ matrix with time-invariant autoregressive and cross-lagged regression coefficients, and $\mathbf{E}_{it}$ is a $p \times 1$ vector with random residuals.
 
 # 2. Relating growth parameters of ALT model and LCM-SR
 Here, we show how the intercepts and slopes from the restricted multivariate ALT model can be expressed as in terms of the intercepts and slopes from the restricted multivariate LCM-SR, and vice versa.
 
 ## Derivations in @hamaker_conditions_2005
-@hamaker_conditions_2005 provided expressions that connect the parameters from the restricted LCM-SR in terms of the parameters from the restricted ALT model. However, the online supporting materials showing the derivations for this result are no longer available through the link that was included in that article; therefore, we present the results here again. 
+@hamaker_conditions_2005 provided expressions indicating how the restricted ALT model can be expressed as a restricted LCM-SR, showing how the intercepts and slopes of the latter can be expressed as functions of the ALT parameters. However, the online supporting materials showing the derivations for this result are no longer available through the link that was included in that article; therefore, we present the results here again. 
 
-Starting from the restricted ALT model, we can write
+Starting from the restricted ALT model, and by repeatedly replacing the lagged version of $\mathbf{Y}_{it}$ on the right-hand side by its expression in terms of the preceding observations, we can write
 $$
 \begin{align}
-\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
+\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\[EH1.1]
 &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\Bigl\{\mathbf{A}_{i} + \mathbf{B}_i (t-1) + \mathbf{R}\mathbf{Y}_{t-2} + \mathbf{E}_{it-1} \Bigr\} + \mathbf{E}_{it}\notag\\
 &= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i+ \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \mathbf{Y}_{it-2} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
 &= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \Bigl\{\mathbf{A}_i + \mathbf{B}_i (t-2) + \mathbf{R}\mathbf{Y}_{it-3} + \mathbf{E}_{it-2} \Bigr\} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
@@ -79,14 +79,17 @@ $$
 \end{align}
 $$ {#eq-foursums}
 
-The first two terms in @eq-foursums do not contain time $t$. They can be rewritten using results from the geometric series, that is,
+Note that the first two terms on the right-hand side of @eq-foursums do not contain time $t$. They can be rewritten using results from the geometric series, that is,
 $$
 \begin{align}
-\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i &=(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i \\
-\sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j & = \sum_{j=0}^{\infty} j \otimes \mathbf{R}^{j-1} \mathbf{R}\mathbf{B}_i  = (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i,
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i &=(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i
+\end{align}
+And
+\begin{align}
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j & = \sum_{j=1}^\infty \mathbf{R}^j \mathbf{B}_i j\\  &= \sum_{j=1}^{\infty} j \mathbf{R}^{j-1} \mathbf{R}\mathbf{B}_i  \\ &= (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i.
 \end{align}
 $$
-where $\otimes$ represents the Kronecker product. The third term contains time $t$, and can also be rewritten with results from the geometric series, to get 
+The third term contains time $t$, and can also be rewritten with results from the geometric series, to get 
 $$
 \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i t = (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i t.
 $$
@@ -98,7 +101,7 @@ $$
 \end{align}
 $$
 
-Using these results in @eq-alt, we can write
+Plugging these expressions into @eq-alt, we can write
 $$
 \begin{align}
 \mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
@@ -106,7 +109,7 @@ $$
 &= \mathbf{\Delta}_i + \mathbf{\Gamma}_i t + \mathbf{Z}_{it}
 \end{align}
 $$
-where $\mathbf{\Delta}_i = \Bigl\{(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i \Bigr\}$ forms the $p$-variate vector with intercepts, $\mathbf{\Gamma}_i= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i$ forms the $p$-variate vector with linear slopes, and $\mathbf{Z}_{it}$ represents the $p$-variate vector with residuals that are regressed on each other and themselves through $\mathbf{R}$. The latter expression can therefore be interpreted as a latent growth curve model with VAR(1) residuals (i.e., a restricted LCM-SR).
+Which can be recognized as a multivariate LCM-SR with $\mathbf{\Delta}_i = \Bigl\{(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i - (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i \Bigr\}$ as the $p$-variate vector with intercepts, $\mathbf{\Gamma}_i= (\mathbf{I}-\mathbf{R})^{-1} \mathbf{B}_i$ as the $p$-variate vector with linear slopes, and $\mathbf{Z}_{it}$ being the $p$-variate vector with residuals that are regressed on each other and themselves through $\mathbf{R}$, thus forming a VAR(1) process.
 
 ## Reverse expressions
 Using these results, we can also obtain the reverse expressions. The slopes from the restricted ALT model can be expressed as
@@ -128,11 +131,11 @@ and multiplying both sides by $(\mathbf{I}-\mathbf{R})$, we get
 $$
 (\mathbf{I}-\mathbf{R})\Big\{\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i \Bigr\}=  \mathbf{A}_i.
 $$
-Hence, we can write
+Hence, we can write the intercepts from the restricted ALT model as
 $$
 \mathbf{A}_i = (\mathbf{I}-\mathbf{R})\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-1} \mathbf{R}(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}_i .
 $$
-Since $\mathbf{R}(\mathbf{I}-\mathbf{R})= \mathbf{R}- \mathbf{R}^2$, but it is also true that $(\mathbf{I}-\mathbf{R})\mathbf{R}= \mathbf{R}- \mathbf{R}^2$, we can replace $\mathbf{R}(\mathbf{I}-\mathbf{R})$ by $(\mathbf{I}-\mathbf{R})\mathbf{R}$, which gives us
+This expression can be further simplified: Since $\mathbf{R}(\mathbf{I}-\mathbf{R})= \mathbf{R}- \mathbf{R}^2$, but it is also true that $(\mathbf{I}-\mathbf{R})\mathbf{R}= \mathbf{R}- \mathbf{R}^2$, we can replace $\mathbf{R}(\mathbf{I}-\mathbf{R})$ by $(\mathbf{I}-\mathbf{R})\mathbf{R}$, to get
 $$
 \begin{align}
     \mathbf{A}_i     &= (\mathbf{I}-\mathbf{R})\mathbf{\Delta}_i + (\mathbf{I} - \mathbf{R})^{-1} (\mathbf{I}-\mathbf{R})\mathbf{R}\mathbf{\Gamma}_i \\
@@ -142,7 +145,9 @@ $$
 which shows that the intercepts of the multivariate restricted ALT model are functions of both the vector with intercepts and the vector with slopes of the multivariate restricted LCM-SR, and the lagged parameters in $\mathbf{R}$. 
 
 ## Converting between ALT and LCM-SR growth parameters (*App*)
-The below app converts the growth parameters of the restricted bivariate ALT model into those of the restricted bivariate LCM-SR (and vice versa) based on the equations above. The default settings below mirror those in the main paper, and show how a positive trend in $X$ and $Y$ variables shows up as a negative coefficient in the slope matrix $\mathbf{B}$ of the ALT model. You can explore the relationship between the restricted bivariate ALT model and restricted bivariate LCM-SR growth parameters further by filling in other values in the $\mathbf{\Delta}_i$, $\mathbf{\Gamma}_i$, and $\mathbf{R}$ matrices when the LCM-SR is the population model, or in the $\mathbf{A}_i$, $\mathbf{B}_i$, and $\mathbf{R}$ matrices when the ALT model is the population model. 
+The below app converts the growth parameters of the restricted bivariate ALT model into those of the restricted bivariate LCM-SR and vice versa, based on the derivations presented above. 
+
+The default settings below mirror those in the main paper, and show how having positive trends in $\mathbf{\Gamma}_i$ for both $X$ and $Y$.can correspond to having a positive and a negative coefficient in the slope matrix $\mathbf{B}$ of the ALT model. 
 
 ::: {.column-page-right}
 ```{shinylive-r}
@@ -875,21 +880,43 @@ shinyApp(
 ```
 :::
 
+You can explore the relationship between the restricted bivariate ALT model and restricted bivariate LCM-SR growth parameters further by filling in other values in the $\mathbf{\Delta}_i$, $\mathbf{\Gamma}_i$, and $\mathbf{R}$ matrices when the LCM-SR is the point of departure, or in the $\mathbf{A}_i$, $\mathbf{B}_i$, and $\mathbf{R}$ matrices when the ALT model is the starting point.
+
 # 3. Interval between measurements
 
-Since the time interval between measurements is often a somewhat arbitrary choice, it is of interest to understand what happens to the parameters of a model when the interval changes. 
+Since the time interval between measurements is often a somewhat arbitrary choice, it is of interest to understand what happens to the parameters of a model when the interval changes. Here we begin with explaining what happens to the matrix with lagged parameters when the time interval between measurement occasions increases. Subsequently we present an app that allows you to see how the parameters of the LCM-SR and ALT model are affected by changing time intervals. 
 
 ## $\mathbf{R}$ across different intervals
 
-Increasing or decreasing the measurement frequency (e.g., measuring every three, six, or twelve months), does not change the underlying linear trend represented by $\mathbf{\Delta}_i$ and $\mathbf{\Gamma}_i$ in the LCM-SR, except for the adjustment by a constant for the slopes. That is, if the measurements are taken with intervals that are double the length of the initial interval, the slopes will also double in size. As this change is the same for all elements in $\mathbf{\Gamma}_i$, and the change is the same for all individuals $i$, the correlations between the slopes, and between the slopes and the intercepts are not affected by this. However, for the parameters of the ALT model, using a different interval between the measurements can have quite dramatic effects on the intercepts and slopes. To understand this, it is important to first understand what happens to the lagged parameters when the interval changes. 
 
-From the time series literature [@hamilton_time_1994] it is known that if we double the interval, the matrix with lagged parameters becomes $\mathbf{R}^2$. Continuing with the example above, suppose that $\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}$ represents the lagged effects for a 3-month interval (quarterly). The lagged effects for a 6-month interval (biannual) are then given by $\mathbf{R}_{\text{Qu}}^{2} = \mathbf{R}_{\text{Bi}} = \begin{bmatrix}0.25 & 0.4 \\ 0 & 0.25\end{bmatrix}$. Note that $\mathbf{R}$ is a matrix, and that squaring a matrix is more complex that simply squaring its individuals elements. Therefore, the lack of change in the cross-lagged effect when comparing $\mathbf{R}_{\text{Qu}}$ and $\mathbf{R}_{\text{Bi}}$ is not a mistake, but rather a (coincidental) result of matrix exponentiation. If we double the interval again to a 12-month interval (annual), this results in $\mathbf{R}_{\text{Qu}}^{4} = \mathbf{R}_{\text{An}} = \begin{bmatrix}0.062 & 0.2 \\ 0 & 0.062\end{bmatrix}$; now, the cross-lagged did change. 
+
+From the time series literature it is known that if we double the interval, the matrix with lagged parameters becomes $\mathbf{R}^2$ [@hamilton_time_1994]. Continuing with the example above, suppose that
+
+\begin:align}
+\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}
+\end{align}
+represents the lagged effects for a 3-month (i.e., quarterly) interval. The lagged effects for a 6-month (i.e., biannual) interval are then given by 
+
+\begin{align}
+\mathbf{R}_{\text{Qu}}^{2} = \mathbf{R}_{\text{Bi}} = \begin{bmatrix}0.25 & 0.4 \\ 0 & 0.25\end{bmatrix}.
+\end{align} 
+Note that the lack of change in the cross-lagged effect when comparing $\mathbf{R}_{\text{Qu}}$ and $\mathbf{R}_{\text{Bi}}$ is a rather coincidental result of matrix exponentiation. If we double the interval again to a 12-month (i.e., annual) interval, this results in
+
+\begin{align}
+\mathbf{R}_{\text{Qu}}^{4} = \mathbf{R}_{\text{An}} = \begin{bmatrix}0.062 & 0.2 \\ 0 & 0.062\end{bmatrix}
+\end{align}
+showing the cross-lagged parameter now did change. In general, when considering a different interval, the elements of the matrix containing the lagged effects will be functions of the all the parameters of the initial matrix. 
 
 ## Growth parameters across different intervals (*App*)
 
-Based on the derivations above, we see that these changes in the lagged effects across time intervals does not influence the growth parameters of the LCM-SR models, whereas it does impact the growth parameters of the ALT model. In the app below, we demonstrate this by computing the growth parameters for the ALT model (and the LCM-SR) for three scenarios: When measurements are taken at 3-month intervals, when measurements are taken at 6-month intervals, and when measurement are taken at 12-month intervals. Our starting point is the LCM-SR with the parameters $\mathbf{\Delta}_{\text{Qu}} = \begin{bmatrix}5 \\ 15\end{bmatrix}$ and $\mathbf{\Gamma}_{\text{Qu}} = \begin{bmatrix}1 \\ 3\end{bmatrix}$ for 3-month intervals, and using $\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}$. The app demonstrates that for this constellation of parameter values, the intercept $\mathbf{A}_{\text{Qu}}$ in the ALT model changes not just in value, but also in sign when the interval is doubled to 6-month intervals ($\mathbf{A}_{\text{Qu}} \rightarrow \mathbf{A}_{\text{Bi}}$); the intercept in the LCM-SR, however, remains the same. Moreover, the sign of the slope parameters also changes in the ALT model when measurements are taken at 12-month intervals ($\mathbf{B}_{\text{Qu}} \rightarrow \mathbf{B}_{\text{An}}$), even though the underlying linear trend remains the same. 
+The intercepts of the LCM-SR (i.e., $\mathbf{\Delta}_i$) are not affected by a change in the intervals between measurement occasions. The slopes of the LCM-SR (i.e., \mathbf{\Gamma}_i$) change with a constant; for instance, when going from a 3-month interval to a 6-month interval, and we refer to the interval in both cases as an interval of the size 1, then the slopes in the second scenario are twoce as large as the ones in the first scenario; going to an interval of 12-months results in slopes that are four times as large as the initial ones. 
 
-You can use the app below to further explore how the growth parameters change as a function of the time intervals between subsequent measurement occasions by filling in different population values in the $\mathbf{\Delta}_{\text{Qu}}$, $\mathbf{\Gamma}_{\text{Qu}}$, and $\mathbf{R}_{\text{Qu}}$ matrices. To simplify notation, we omit the subscript $i$ for the growth parameters in the app.
+But for the ALT model, the slope parameters change more dramatically when the time interval between measurement occasions changes. In the app below, we demonstrate this by computing the growth parameters for the ALT model (and the LCM-SR) for three scenarios: When measurements are taken at 3-month intervals, when measurements are taken at 6-month intervals, and when measurement are taken at 12-month intervals. 
+
+Our starting point is the LCM-SR with the parameters $\mathbf{\Delta}_{\text{Qu}} = \begin{bmatrix}5 \\ 15\end{bmatrix}$ and $\mathbf{\Gamma}_{\text{Qu}} = \begin{bmatrix}1 \\ 3\end{bmatrix}$ for 3-month intervals, and using $\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}$. The app demonstrates that for this constellation of parameter values, the intercept $\mathbf{A}_{\text{Qu}}$ in the ALT model changes not just in value, but also in sign when the interval is doubled to 6-month intervals ($\mathbf{A}_{\text{Qu}} \rightarrow \mathbf{A}_{\text{Bi}}$); the intercept in the LCM-SR, however, remains the same. Moreover, the sign of the slope parameters also changes in the ALT model when measurements are taken at 12-month intervals ($\mathbf{B}_{\text{Qu}} \rightarrow \mathbf{B}_{\text{An}}$), even though the underlying linear trend remains the same. 
+
+You can use the app below to further explore how the growth parameters change as a function of the time intervals between subsequent measurement occasions by filling in different population values in the $\mathbf{\Delta}_{\text{Qu}}$, $\mathbf{\Gamma}_{\text{Qu}}$, and $\mathbf{R}_{\text{Qu}}$ matrices. To simplify notation, we omitted the subscript $i$ for the growth parameters in the app.
+
 
 ::: {.column-page-right}
 ```{shinylive-r}
@@ -1363,15 +1390,19 @@ shinyApp(
 :::
 
 
-# 4. Covariances between growth parameters
+# 4. Covariances of growth parameters
 
-We can also consider the connection between the covariance structures of the trend parameters in the restricted multivariate LCM-SR and the restricted multivariate ALT model. This is relevant, because much of the interpretation is concerned with individual differences in trend parameters, and how such differences relate to each other. For example, we may be interested in whether individuals who increase more in $X$ also tend to increase more in $Y$, or whether individuals who have a higher intercept also tend to have a steeper slope. In the following, we present the covariance structure of the restricted multivariate LCM-SR. Subsequently, we derive the expression for the variances and covariances of intercepts and slopes of the restricted multivariate ALT model as functions of the variances and covariances of the corresponding LCM-SR. This is followed by a numerical example for a bivariate scenario and an app with which you can try out other bivariate scenarios. 
+We can also consider the connection between the covariance structures of the trend parameters in the restricted multivariate LCM-SR and the restricted multivariate ALT model. This is relevant, because much of the interpretation in empirical applications is concerned with individual differences in trend parameters, and how such differences relate to each other. For example, we may be interested in whether individuals who increase more in $X$ also tend to increase more in $Y$ compared to others, or whether individuals who have a higher intercept also tend to have a steeper slope. 
+
+In the following, we begin with the covariance structure of the restricted multivariate LCM-SR. Subsequently, we derive the expression for the variances and covariances of intercepts and slopes of the restricted multivariate ALT model as functions of the variances and covariances of the corresponding LCM-SR. This is followed by a numerical example for a bivariate scenario and an app with which you can try out other bivariate scenarios. 
 
 ## Covariance structure of $\mathbf{\Delta}$ and $\mathbf{\Gamma}$ (LCM-SR)
-Since the parameters $\mathbf{\Delta}_i$ and $\mathbf{\Gamma}_i$ from the LCM-SR model can be interpreted in the same way as intercepts and slopes from a multivariate growth curve model without autoregressive effects, it is also clear how to interpret the covariance structure of these parameters: $\mathbf{\Sigma}_{\mathbf{\Delta} \mathbf{\Delta}}$ is the $p \times p$ covariance matrix of the intercepts in $\mathbf{\Delta}$, $\mathbf{\Sigma} _{\mathbf{\Gamma}\mathbf{\Gamma}}$ is the $p\times p$ covariance matrix of the in slopes $\mathbf{\Gamma}$, and $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ is the covariance matrix between the intercepts and slopes (with $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Delta}}=\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}'$). Below, the covariance matrices $\mathbf{\Sigma}_{\mathbf{AA}}$, $\mathbf{\Sigma}_{\mathbf{BB}}$ and $\mathbf{\Sigma}_{\mathbf{AB}}$ of the ALT model are derived in terms of the covariance matrices of the LCM-SR model; this derivation is necessarily based on the assumption that $\mathbf{R}$ is invariant over time. 
+Since the parameters $\mathbf{\Delta}_i$ and $\mathbf{\Gamma}_i$ from the LCM-SR model can be interpreted in the same way as intercepts and slopes from a multivariate growth curve model without autoregressive or cross-lagged effects, it is also clear how to interpret the covariance structure of these parameters: $\mathbf{\Sigma}_{\mathbf{\Delta} \mathbf{\Delta}}$ is the $p \times p$ covariance matrix of the intercepts, $\mathbf{\Sigma} _{\mathbf{\Gamma}\mathbf{\Gamma}}$ is the $p\times p$ covariance matrix of the in slopes, and $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ is the covariance matrix between the intercepts and slopes (with $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Delta}}=\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}'$). 
 
 ## Deriving the covariance structure of $\mathbf{A}$ and $\mathbf{B}$ (ALT model)
-Without loss of generality, we assume that the means of $\mathbf{\Delta}$ and $\mathbf{\Gamma}$ are all zero, so we can write
+Here, the covariance matrices $\mathbf{\Sigma}_{\mathbf{AA}}$, $\mathbf{\Sigma}_{\mathbf{BB}}$ and $\mathbf{\Sigma}_{\mathbf{AB}}$ of the ALT model are derived in terms of the covariance matrices of the LCM-SR model; this derivation is necessarily based on the assumption that $\mathbf{R}$ is invariant over time. Furthermore, and without loss of generality, we assume that the means of $\mathbf{\Delta}$ and $\mathbf{\Gamma}$ are all zero. 
+
+Hence, for the covariance matrix of the intercepts of the restricted ALT model we can write
 
 $$
 \begin{align}
@@ -1382,30 +1413,30 @@ $$
 \end{align}
 $$
 
-This shows that the covariances (and thus the correlations) between the intercepts from the ALT formulation are complicated functions of the covariances between the intercepts from the corresponding LCM-SR, the covariances of the slopes of the LCM-SR, and the covariances between the intercepts and slopes from the LCM-SR. It will be quite possible to find a scenario where the correlation between two intercepts in the LCM-SR is close to 1, whereas the corresponding intercepts in the ALT formulation are not correlated, or even negatively correlated. 
+This shows that the (co)variances (and thus the correlations) between the intercepts from the ALT formulation are complicated functions of the (co)variances between the intercepts from the corresponding LCM-SR (i.e., $\mathbf{\Sigma}_{\mathbf{\Delta\Delta}}$), the (co)variances of the slopes of the LCM-SR (i.e., $\mathbf{\Sigma}_{\mathbf{\Gamma\Gamma}}$), and the covariances between the intercepts and slopes from the LCM-SR (i.e., $\mathbf{\Sigma}_{\mathbf{\Delta\Gamma}}$). The complexity of this expression implies that the pattern in $    \mathbf{\Sigma}_{\mathbf{\mathbf{A}\mathbf{A}}} $ can be quite distinct from the pattern in     \mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Delta}}.
 
 For the covariance matrix of the slopes from the restricted ALT model, we can write
 $$
 \begin{align}
-    \mathbf{\Sigma}_{\mathbf{B}\mathbf{B}} &= E\Bigl[\bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\} \bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\} \prime \Bigl]\\
-    &=(\mathbf{I} - \mathbf{R}) \mathbf{\Sigma}_{\mathbf{\Gamma} \mathbf{\Gamma}} (\mathbf{I} - \mathbf{R}) \prime,
+    \mathbf{\Sigma}_{\mathbf{B}\mathbf{B}} &= E\Bigl[\bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\} \bigl\{(\mathbf{I} - \mathbf{R})\mathbf{\Gamma} \bigr\}' \Bigl]\\
+    &=(\mathbf{I} - \mathbf{R}) \mathbf{\Sigma}_{\mathbf{\Gamma} \mathbf{\Gamma}} (\mathbf{I} - \mathbf{R})' ,
 \end{align}
 $$
-which shows that the expression is much less involved. However, it can be shown that a positive off-diagonal element in $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}$, implying a positive correlation between the slopes of two variables in the system, does not have to imply a corresponding positive element in $\mathbf{\Sigma}_{\mathbf{B}\mathbf{B}}$. 
+which shows that the expression is less complext than that for the intercepts. However, it can be shown that a positive off-diagonal element in $\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}$, implying a positive correlation between the slopes of two variables in the system, does not have to imply a corresponding positive element in $\mathbf{\Sigma}_{\mathbf{B}\mathbf{B}}$. 
 
 For the covariance matrix between the intercepts and slopes in the restricted ALT model, we can write
 $$
 \begin{align}
     \mathbf{\Sigma}_{\mathbf{A}\mathbf{B}} &= E\Bigl[\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Delta} + \mathbf{R}\mathbf{\Gamma}\bigr\}\bigl\{(\mathbf{I}-\mathbf{R})\mathbf{\Gamma}\bigr\}'\Bigr]\\
     &=E\Bigl[(\mathbf{I}-\mathbf{R})\mathbf{\Delta}\mathbf{\Gamma}'(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Gamma}\mathbf{\Gamma}'(\mathbf{I}-\mathbf{R})'\Bigr]\\
-    &= (\mathbf{I}-\mathbf{R})\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})'
+    &= (\mathbf{I}-\mathbf{R})\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})' + \mathbf{R}\mathbf{\Sigma}_{\mathbf{\Gamma}\mathbf{\Gamma}}(\mathbf{I}-\mathbf{R})'.
 \end{align}
 $$
-which implies that even when all elements of $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ are positive, meaning that all the intercepts and slopes are positively correlated, this pattern may not be obvious when considering the covariances in $\mathbf{\Sigma}_{\mathbf{A}\mathbf{B}}$.
+Based on this expression, we can see that even when all elements of $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ are positive, meaning that all the intercepts and slopes are positively correlated, this pattern may not be obvious when considering the covariances in $\mathbf{\Sigma}_{\mathbf{A}\mathbf{B}}$. It is also possible that none of the intercepts and slopes are correlated (i.e., $\mathbf{\Sigma}_{\mathbf{\Delta}\mathbf{\Gamma}}$ only contains zeros), while all elements in $\mathbf{\Sigma}_{\mathbf{A}\mathbf{B}}$ are non-zero. 
 
 ## Numerical example
 
-Suppose we have a restricted bivariate LCM-SR with the lagged parameters as before, that is,
+Suppose we have a restricted bivariate LCM-SR with the same lagged parameters as before, that is,
 $$ 
 \mathbf{R} = \begin{bmatrix}
     0.5 & 0.4\\
@@ -1452,21 +1483,21 @@ $$
 $$
 Importantly, all trend parameters are positively related in this LCM-SR.
 
-When using these in the formulas above, we can derive what the variances and covariances of the trend components of the equivalent ALT model are. The covariance matrix for the intercepts in $\mathbf{A}$ is
+When using these in the formulas above, we can derive what the variances and covariances of the trend parameters of the equivalent ALT model are. The covariance matrix for the intercepts in $\mathbf{A}$ is
 $$
 \mathbf{\Sigma}_{\mathbf{\mathbf{A}\mathbf{A}}} = \begin{bmatrix}
   0.889\\
   0.275 & 0.535
 \end{bmatrix},
 $$
-which shows that the intercepts are also positively related in the restricted ALT model. However, the covariance matrix for the slopes in the ALT formulation is
+the covariance matrix for the slopes in the ALT formulation is
 $$
 \mathbf{\Sigma}_{\mathbf{B}\mathbf{B}} = \begin{bmatrix}
   \;\;\;0.290\\
   -0.125 & 0.250
 \end{bmatrix},
 $$
-showing that the slopes in this model are actually negatively related. The covariance matrix relating the intercepts and slopes is
+and the covariance matrix relating the intercepts and slopes is
 $$
 \mathbf{\Sigma}_{\mathbf{A}\mathbf{B}} = \begin{bmatrix}
   \;\;\; 0.1005 & 0.3150\\
@@ -1474,9 +1505,9 @@ $$
 \end{bmatrix} \;\;\;\text{and hence}\;\;\;\;     \mathbf{\Sigma}_{\mathbf{B}\mathbf{A}} = \begin{bmatrix}
   0.1005 & -0.1100\\
   0.3150 & \;\;\; 0.2625
-\end{bmatrix} ,
+\end{bmatrix} .
 $$
-showing that the covariance between the second intercept and the first slope is negative. Putting these covariances matrices together, we get
+Putting these covariances matrices together, we get
 $$
 \begin{align*}
     \mathbf{\Sigma}_{ALT} &= \begin{bmatrix}
@@ -1488,18 +1519,19 @@ $$
      0.2750 & \;\;\;0.5250\\
      0.1005 & -0.1100 & \;\;\;0.2900\\
      0.3150 & \;\;\; 0.2625 & -0.1250 &0.2500
-\end{bmatrix}.  
+\end{bmatrix},  
 \end{align*}
 $$
+which shows that some of the covariances of the trend parameters in the ALT formulation are negative, that is: the covariance between the slopes (which is -0.125), and the covariance between the second intercept and the first slope (which is -0.11).
 
-This numerical example shows that the signs of covariances between the trend elements in an ALT model do not necessarily reflect the signs of corresponding covariances in the LCM-SR. While the latter have direct interpretations in terms of how individual differences in the actual trajectories that we can visualize over time (i.e., the linear lines that summarize the observations of an individual), the covariances in $\mathbf{\Sigma}_{ALT}$ have to be interpreted in terms of linear trends after subtracting the autoregressive and cross-lagged regressive effects from the data. 
+This numerical example shows that the signs of covariances between the trend elements in an ALT model do not necessarily reflect the signs of corresponding covariances in the LCM-SR. While the latter have direct interpretations in terms of how individual differences in the actual trajectories that we can visualize over time (i.e., the linear lines that summarize the observations of an individual) are related, the covariances in $\mathbf{\Sigma}_{ALT}$ have to be interpreted in terms of individual differences in intercepts and linear trends after subtracting the autoregressive and cross-lagged regressive effects from the data. 
 
-Without a thorough understanding of the meaning of parameters in the ALT model, the negative covariance of -0.125 between the slopes in the ALT formulation (which translates to a correlation of about -0.464) will easily be misinterpreted in meaning that individuals who increase more in one variable, tend to increase less in the other variable over time. In reality, the underlying linear trajectories are actually positively related with a correlation of 0.3, as indicated by the LCM-SR formulation.
+Without a thorough understanding of the meaning of parameters in the ALT model, the negative covariance of -0.125 between the slopes in the ALT formulation (which translates to a correlation of about -0.464) can easily be misinterpreted in meaning that individuals who increase more in one variable, tend to increase less in the other variable over time. In reality, the underlying linear trajectories are actually positively related with a correlation of 0.3, as indicated by the LCM-SR formulation.
 
-There are also scenarios in which the sign of the covariance between the intercept and slope of a construct (e.g., of $X$) in the LCM-SR differs from the sign of the corresponding covariance in the ALT formulation. For instance, the intercept and slope of $Y$ may be positively correlated, implying that a higher intercept tends to be accompanied by a steeper increase over time; in contrast, the intercept of $Y$ in the ALT model may then be negatively correlated with the slope in $Y$, which many users will interpret to mean that people who have a higher intercept tend to increase less over time. Obviously, this interpretation overlooks that the covariance in the ALT model concerns the linear trends underlying $Y^\#_{it}$ rather than $Y_{it}$. 
+There are also scenarios in which the sign of the covariance between the intercept and slope of a construct (e.g., of $X$) in the LCM-SR differs from the sign of the corresponding covariance in the ALT formulation. For instance, the intercept and slope of $Y$ may be positively correlated, implying that a higher intercept tends to be accompanied by a steeper increase over time; in contrast, the intercept of $Y$ in the ALT model may then be negatively correlated with the slope in $Y$, which many users will interpret to mean that people who have a higher intercept tend to increase less over time. Obviously, this interpretation overlooks that the covariance in the ALT model concerns the linear trends underlying $Y^\#_{it}$ rather than $Y_{it}$; our presentation here is intended to make people aware of this difference, and showing that it important to know what one is interpreting. 
 
 ## Comparing covariance structures of growth parameters (*App*)
-The below app allows you to further explore the relationships between $\mathbf{\Sigma}_{\text{LCM-SR}}$ and $\mathbf{\Sigma}_{\text{ALT}}$. As a default, it illustrates the numerical example from above. You can set the values of $\mathbf{\Sigma}_{\text{LCM-SR}}$ and $\mathbf{R}$ to explore different scenarios as well. For example, you can set all the covariances between the growth factors in the LCM-SR to be 0 (i.e., all elements of $\mathbf{\Sigma}_{\mathbf{\Gamma \Delta}}$ are 0). Yet, the covariances between the intercepts and slopes in the ALT model ($\mathbf{\Sigma}_{\mathbf{BA}}$) will still be non-zero, with some covariances being positive and some being negative.
+The below app allows you to further explore the relationships between $\mathbf{\Sigma}_{LCM-SR}$ and $\mathbf{\Sigma}_{ALT}$. As a default, it illustrates the numerical example from above. You can set the values of $\mathbf{\Sigma}_{LCM-SR}$ and $\mathbf{R}$ to explore different scenarios as well. For example, you can set all the covariances between the growth factors in the LCM-SR to be 0 (i.e., all elements of $\mathbf{\Sigma}_{\mathbf{\Gamma \Delta}}$ are 0). Yet, the covariances between the intercepts and slopes in the ALT model ($\mathbf{\Sigma}_{\mathbf{BA}}$) will still be non-zero, with some covariances being positive and some being negative.
 
 ::: {.column-page-right}
 ```{shinylive-r}
