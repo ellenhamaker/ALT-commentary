@@ -8,7 +8,7 @@
 
 <meta name="author" content="Ellen L. Hamaker">
 <meta name="author" content="Jeroen D. Mulder">
-<meta name="dcterms.date" content="2026-09-16">
+<meta name="dcterms.date" content="2026-09-30">
 
 <title>Commentary on Bollen and Bianconcini (2026)</title>
 <style>
@@ -134,7 +134,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Commentary on Bollen and Bianconcini (2026)</h1>
-<p class="subtitle lead">Online Supplementary Materials</p>
+<p class="subtitle lead">Online supplementary materials of Hamaker and Mulder (under review)</p>
 </div>
 
 
@@ -166,7 +166,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 16, 2026</p>
+      <p class="date">September 30, 2026</p>
     </div>
   </div>
   
@@ -178,7 +178,7 @@ window.Quarto = {
 </header>
 
 
-<p>This website is a supplement to <span class="citation" data-cites="hamaker_commentary_2026">(<a href="#ref-hamaker_commentary_2026" role="doc-biblioref"><strong>hamaker_commentary_2026?</strong></a>)</span>. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.</p>
+<p>This website is a supplement to ``<em>Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)</em>’’ by <span class="citation" data-cites="hamaker_commentary_2026">Hamaker and Mulder (<a href="#ref-hamaker_commentary_2026" role="doc-biblioref">2026</a>)</span>. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.</p>
 <p>Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time, because this version is equivalent to a similarly restricted version of the LCM-SR <span class="citation" data-cites="hamaker_conditions_2005">(<a href="#ref-hamaker_conditions_2005" role="doc-biblioref">Hamaker 2005</a>)</span>. For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the data when observations of an individual are plotted against time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the restricted LCM-SR, allows one to see how ALT parameters are related to model features that have a direct and intuitive interpretation in terms of the underlying trajectories of individuals over time.</p>
 <p>The supplementary materials contain:</p>
 <ol type="1">
@@ -202,7 +202,7 @@ window.Quarto = {
 <p><span class="citation" data-cites="hamaker_conditions_2005">Hamaker (<a href="#ref-hamaker_conditions_2005" role="doc-biblioref">2005</a>)</span> provided expressions indicating how the restricted ALT model can be expressed as a restricted LCM-SR, showing how the intercepts and slopes of the latter can be expressed as functions of the ALT parameters. However, the online supporting materials showing the derivations for this result are no longer available through the link that was included in that article; therefore, we present the results here again.</p>
 <p>Starting from the restricted ALT model, and by repeatedly replacing the lagged version of <span class="math inline">\(\mathbf{Y}_{it}\)</span> on the right-hand side by its expression in terms of the preceding observations, we can write <span id="eq-foursums"><span class="math display">\[
 \begin{align}
-\mathbf{Y}_{it} &amp;= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\[EH1.1]
+\mathbf{Y}_{it} &amp;= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
 &amp;= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\Bigl\{\mathbf{A}_{i} + \mathbf{B}_i (t-1) + \mathbf{R}\mathbf{Y}_{t-2} + \mathbf{E}_{it-1} \Bigr\} + \mathbf{E}_{it}\notag\\
 &amp;= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i+ \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \mathbf{Y}_{it-2} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
 &amp;= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \Bigl\{\mathbf{A}_i + \mathbf{B}_i (t-2) + \mathbf{R}\mathbf{Y}_{it-3} + \mathbf{E}_{it-2} \Bigr\} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
@@ -213,10 +213,8 @@ window.Quarto = {
 \end{align}
 \tag{2}\]</span></span></p>
 <p>Note that the first two terms on the right-hand side of <a href="#eq-foursums" class="quarto-xref">Equation&nbsp;2</a> do not contain time <span class="math inline">\(t\)</span>. They can be rewritten using results from the geometric series, that is, <span class="math display">\[
-\begin{align}
-\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i &amp;=(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i
-\end{align}
-And
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i =(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i
+\]</span> And <span class="math display">\[
 \begin{align}
 \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j &amp; = \sum_{j=1}^\infty \mathbf{R}^j \mathbf{B}_i j\\  &amp;= \sum_{j=1}^{\infty} j \mathbf{R}^{j-1} \mathbf{R}\mathbf{B}_i  \\ &amp;= (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i.
 \end{align}
@@ -1023,7 +1021,7 @@ shinyApp(
 #|   shinylive does not work in self-contained HTML documents.
 #|   Please set `embed-resources: false` in your metadata.
 #| standalone: true
-#| viewerHeight: 620
+#| viewerHeight: 500
 # PREAMBLE ----
 library(shiny)
 
@@ -2062,6 +2060,9 @@ shinyApp(
 <div id="ref-hamaker_conditions_2005" class="csl-entry" role="listitem">
 Hamaker, Ellen L. 2005. <span>“Conditions for the <span>Equivalence</span> of the <span>Autoregressive</span> <span>Latent</span> <span>Trajectory</span> <span>Model</span> and a <span>Latent</span> <span>Growth</span> <span>Curve</span> <span>Model</span> <span>With</span> <span>Autoregressive</span> <span>Disturbances</span>.”</span> <em>Sociological Methods &amp; Research</em> 33 (3): 404–16. <a href="https://doi.org/10.1177/0049124104270220">https://doi.org/10.1177/0049124104270220</a>.
 </div>
+<div id="ref-hamaker_commentary_2026" class="csl-entry" role="listitem">
+Hamaker, Ellen L., and Jeroen D. Mulder. 2026. <span>“Revisiting the Nesting and Interpretation of the Autoregressive Latent Trajectory Model: <span>A</span> Commentary on <span>Bollen</span> and <span>Bianconcini</span> (<span>2026</span>).”</span> <em>Psychometrika</em>.
+</div>
 <div id="ref-hamilton_time_1994" class="csl-entry" role="listitem">
 Hamilton, J. D. 1994. <em>Time <span>Series</span> <span>Analysis</span></em>. Princeton University Press.
 </div>
@@ -2070,14 +2071,14 @@ Hamilton, J. D. 1994. <em>Time <span>Series</span> <span>Analysis</span></em>. P
   title = {Commentary on {Bollen} and {Bianconcini} (2026)},
   volume = {1},
   number = {1},
-  date = {2026-09-16},
+  date = {2026-09-30},
   doi = {10.5555/12345678},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-l._hamaker2026" class="csl-entry quarto-appendix-citeas" role="listitem">
 L. Hamaker, Ellen, and Jeroen D. Mulder. 2026. <span>“Commentary on
 Bollen and Bianconcini (2026).”</span> Vol. 1. Psychometrika, September
-16. <a href="https://doi.org/10.5555/12345678">https://doi.org/10.5555/12345678</a>.
+30. <a href="https://doi.org/10.5555/12345678">https://doi.org/10.5555/12345678</a>.
 </div></div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">

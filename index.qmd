@@ -1,7 +1,7 @@
 ---
 title: "Commentary on Bollen and Bianconcini (2026)"
-subtitle: "Online Supplementary Materials"
-date: 2026-09-16
+subtitle: "Online supplementary materials of Hamaker and Mulder (under review)"
+date: 2026-09-30
 author:
   - name: Ellen L. Hamaker
     id: elh
@@ -24,6 +24,7 @@ citation:
   doi: 10.5555/12345678
 funding: "J. D. Mulder is funded by the project “Solutions to Temporal Misalignment in Longitudinal Causal Research” with file number 019.251SG.005 which is (partly) financed by the Dutch Research Council (NWO) under the grant https://doi.org/10.61686/RLZSH15326."
 bibliography: references.bib
+cls: apa.csl
 format:
   html:
     other-links:
@@ -38,7 +39,7 @@ filters:
   - shinylive
 ---
 
-This website is a supplement to @hamaker_commentary_2026. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.
+This website is a supplement to ``*Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)*'' by @hamaker_commentary_2026. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.
 
 Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time, because this version is equivalent to a similarly restricted version of the LCM-SR [@hamaker_conditions_2005]. For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the data when observations of an individual are plotted against time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the restricted LCM-SR, allows one to see how ALT parameters are related to model features that have a direct and intuitive interpretation in terms of the underlying trajectories of individuals over time.   
 
@@ -68,7 +69,7 @@ Here, we show how the intercepts and slopes from the restricted multivariate ALT
 Starting from the restricted ALT model, and by repeatedly replacing the lagged version of $\mathbf{Y}_{it}$ on the right-hand side by its expression in terms of the preceding observations, we can write
 $$
 \begin{align}
-\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\[EH1.1]
+\mathbf{Y}_{it} &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{Y}_{it-1} + \mathbf{E}_{it}\notag\\
 &= \mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\Bigl\{\mathbf{A}_{i} + \mathbf{B}_i (t-1) + \mathbf{R}\mathbf{Y}_{t-2} + \mathbf{E}_{it-1} \Bigr\} + \mathbf{E}_{it}\notag\\
 &= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i+ \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \mathbf{Y}_{it-2} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
 &= \mathbf{A}_i + \mathbf{R}\mathbf{A}_i + \mathbf{B}_i t + \mathbf{R}\mathbf{B}_i (t-1) + \mathbf{R}^2 \Bigl\{\mathbf{A}_i + \mathbf{B}_i (t-2) + \mathbf{R}\mathbf{Y}_{it-3} + \mathbf{E}_{it-2} \Bigr\} + \mathbf{R}\mathbf{E}_{it-1} + \mathbf{E}_{it}\notag\\
@@ -81,10 +82,10 @@ $$ {#eq-foursums}
 
 Note that the first two terms on the right-hand side of @eq-foursums do not contain time $t$. They can be rewritten using results from the geometric series, that is,
 $$
-\begin{align}
-\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i &=(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i
-\end{align}
+\sum_{j=0}^\infty \mathbf{R}^j \mathbf{A}_i =(\mathbf{I}-\mathbf{R})^{-1} \mathbf{A}_i
+$$
 And
+$$
 \begin{align}
 \sum_{j=0}^\infty \mathbf{R}^j \mathbf{B}_i j & = \sum_{j=1}^\infty \mathbf{R}^j \mathbf{B}_i j\\  &= \sum_{j=1}^{\infty} j \mathbf{R}^{j-1} \mathbf{R}\mathbf{B}_i  \\ &= (\mathbf{I} - \mathbf{R})^{-2} \mathbf{R}\mathbf{B}_i.
 \end{align}
@@ -921,7 +922,7 @@ You can use the app below to further explore how the growth parameters change as
 ::: {.column-page-right}
 ```{shinylive-r}
 #| standalone: true
-#| viewerHeight: 620
+#| viewerHeight: 500
 # PREAMBLE ----
 library(shiny)
 
