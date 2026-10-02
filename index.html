@@ -178,7 +178,7 @@ window.Quarto = {
 </header>
 
 
-<p>This website is a supplement to ``<em>Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)</em>’’ by <span class="citation" data-cites="hamaker_commentary_2026">Hamaker and Mulder (<a href="#ref-hamaker_commentary_2026" role="doc-biblioref">2026</a>)</span>. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.</p>
+<p>This website is a supplement to “<em>Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)</em>” by <span class="citation" data-cites="hamaker_commentary_2026">Hamaker and Mulder (<a href="#ref-hamaker_commentary_2026" role="doc-biblioref">2026</a>)</span>. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.</p>
 <p>Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time, because this version is equivalent to a similarly restricted version of the LCM-SR <span class="citation" data-cites="hamaker_conditions_2005">(<a href="#ref-hamaker_conditions_2005" role="doc-biblioref">Hamaker 2005</a>)</span>. For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the data when observations of an individual are plotted against time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the restricted LCM-SR, allows one to see how ALT parameters are related to model features that have a direct and intuitive interpretation in terms of the underlying trajectories of individuals over time.</p>
 <p>The supplementary materials contain:</p>
 <ol type="1">
@@ -1000,15 +1000,23 @@ shinyApp(
 <section id="mathbfr-across-different-intervals" class="level2">
 <h2 class="anchored" data-anchor-id="mathbfr-across-different-intervals"><span class="math inline">\(\mathbf{R}\)</span> across different intervals</h2>
 <p>From the time series literature it is known that if we double the interval, the matrix with lagged parameters becomes <span class="math inline">\(\mathbf{R}^2\)</span> <span class="citation" data-cites="hamilton_time_1994">(<a href="#ref-hamilton_time_1994" role="doc-biblioref">Hamilton 1994</a>)</span>. Continuing with the example above, suppose that</p>
-\begin:align} _{} =
-<span class="math display">\[\begin{bmatrix}0.5 &amp; 0.4 \\ 0 &amp; 0.5\end{bmatrix}\]</span>
-<p>\end{align} represents the lagged effects for a 3-month (i.e., quarterly) interval. The lagged effects for a 6-month (i.e., biannual) interval are then given by</p>
-<p><span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{align}
+\mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 &amp; 0.4 \\ 0 &amp; 0.5\end{bmatrix}
+\end{align}
+\]</span></p>
+<p>represents the lagged effects for a 3-month (i.e., quarterly) interval. The lagged effects for a 6-month (i.e., biannual) interval are then given by</p>
+<p><span class="math display">\[
+\begin{align}
 \mathbf{R}_{\text{Qu}}^{2} = \mathbf{R}_{\text{Bi}} = \begin{bmatrix}0.25 &amp; 0.4 \\ 0 &amp; 0.25\end{bmatrix}.
-\end{align}\]</span> Note that the lack of change in the cross-lagged effect when comparing <span class="math inline">\(\mathbf{R}_{\text{Qu}}\)</span> and <span class="math inline">\(\mathbf{R}_{\text{Bi}}\)</span> is a rather coincidental result of matrix exponentiation. If we double the interval again to a 12-month (i.e., annual) interval, this results in</p>
-<p><span class="math display">\[\begin{align}
+\end{align}
+\]</span></p>
+<p>Note that the lack of change in the cross-lagged effect when comparing <span class="math inline">\(\mathbf{R}_{\text{Qu}}\)</span> and <span class="math inline">\(\mathbf{R}_{\text{Bi}}\)</span> is a rather coincidental result of matrix exponentiation. If we double the interval again to a 12-month (i.e., annual) interval, this results in</p>
+<p><span class="math display">\[
+\begin{align}
 \mathbf{R}_{\text{Qu}}^{4} = \mathbf{R}_{\text{An}} = \begin{bmatrix}0.062 &amp; 0.2 \\ 0 &amp; 0.062\end{bmatrix}
-\end{align}\]</span> showing the cross-lagged parameter now did change. In general, when considering a different interval, the elements of the matrix containing the lagged effects will be functions of the all the parameters of the initial matrix.</p>
+\end{align}
+\]</span> showing the cross-lagged parameter now did change. In general, when considering a different interval, the elements of the matrix containing the lagged effects will be functions of the all the parameters of the initial matrix.</p>
 </section>
 <section id="growth-parameters-across-different-intervals-app" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="growth-parameters-across-different-intervals-app">Growth parameters across different intervals (<em>App</em>)</h2>

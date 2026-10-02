@@ -39,7 +39,7 @@ filters:
   - shinylive
 ---
 
-This website is a supplement to ``*Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)*'' by @hamaker_commentary_2026. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.
+This website is a supplement to "*Revisiting the nesting and interpretation of the autoregressive latent trajectory model: A commentary on Bollen and Bianconcini (2026)*" by @hamaker_commentary_2026. It contains mathematical derivations to connect the parameters of a multivariate autoregressive latent trajectory (ALT) model and the parameters of a multivariate latent curve model with structured residuals (LCM-SR), as well as two Shiny apps to illustrate the conversion between these two models.
 
 Throughout, we focus on a restricted version of the ALT model in which the lagged parameters are invariant over time, because this version is equivalent to a similarly restricted version of the LCM-SR [@hamaker_conditions_2005]. For the latter, the trend parameters can be interpreted straightforwardly as the intercepts and slopes that characterize the lines that can be drawn through the data when observations of an individual are plotted against time. Hence, seeing how the parameters from the restricted ALT model are connected to the parameters from the restricted LCM-SR, allows one to see how ALT parameters are related to model features that have a direct and intuitive interpretation in terms of the underlying trajectories of individuals over time.   
 
@@ -888,24 +888,29 @@ You can explore the relationship between the restricted bivariate ALT model and 
 Since the time interval between measurements is often a somewhat arbitrary choice, it is of interest to understand what happens to the parameters of a model when the interval changes. Here we begin with explaining what happens to the matrix with lagged parameters when the time interval between measurement occasions increases. Subsequently we present an app that allows you to see how the parameters of the LCM-SR and ALT model are affected by changing time intervals. 
 
 ## $\mathbf{R}$ across different intervals
-
-
-
 From the time series literature it is known that if we double the interval, the matrix with lagged parameters becomes $\mathbf{R}^2$ [@hamilton_time_1994]. Continuing with the example above, suppose that
 
-\begin:align}
+$$
+\begin{align}
 \mathbf{R}_{\text{Qu}} = \begin{bmatrix}0.5 & 0.4 \\ 0 & 0.5\end{bmatrix}
 \end{align}
+$$
+
 represents the lagged effects for a 3-month (i.e., quarterly) interval. The lagged effects for a 6-month (i.e., biannual) interval are then given by 
 
+$$
 \begin{align}
 \mathbf{R}_{\text{Qu}}^{2} = \mathbf{R}_{\text{Bi}} = \begin{bmatrix}0.25 & 0.4 \\ 0 & 0.25\end{bmatrix}.
 \end{align} 
+$$
+
 Note that the lack of change in the cross-lagged effect when comparing $\mathbf{R}_{\text{Qu}}$ and $\mathbf{R}_{\text{Bi}}$ is a rather coincidental result of matrix exponentiation. If we double the interval again to a 12-month (i.e., annual) interval, this results in
 
+$$
 \begin{align}
 \mathbf{R}_{\text{Qu}}^{4} = \mathbf{R}_{\text{An}} = \begin{bmatrix}0.062 & 0.2 \\ 0 & 0.062\end{bmatrix}
 \end{align}
+$$
 showing the cross-lagged parameter now did change. In general, when considering a different interval, the elements of the matrix containing the lagged effects will be functions of the all the parameters of the initial matrix. 
 
 ## Growth parameters across different intervals (*App*)
